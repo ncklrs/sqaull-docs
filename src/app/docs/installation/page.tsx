@@ -109,8 +109,8 @@ export default function InstallationPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              <span className="code-keyword">import</span> {"{"} sqw {"}"} <span className="code-keyword">from</span> <span className="code-string">&apos;sqaull&apos;</span>;{"\n\n"}
-              <span className="code-keyword">const</span> query = sqw<span className="code-string">`from:users sel:* lim:1`</span>;{"\n\n"}
+              <span className="code-keyword">import</span> {"{"} gull {"}"} <span className="code-keyword">from</span> <span className="code-string">&apos;sqaull&apos;</span>;{"\n\n"}
+              <span className="code-keyword">const</span> query = gull<span className="code-string">`from:users sel:* lim:1`</span>;{"\n\n"}
               console.<span className="code-function">log</span>(query.<span className="code-function">toSQL</span>());{"\n"}
               <span className="code-comment">// Should output: SELECT * FROM users LIMIT 1</span>
             </code>

@@ -165,7 +165,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              sqw<span className="code-string">`main:users slay:name,email sus:age&gt;21 vibe:created_at/desc bet:10`</span>{"\n\n"}
+              gull<span className="code-string">`main:users slay:name,email sus:age&gt;21 vibe:created_at/desc bet:10`</span>{"\n\n"}
               <span className="code-comment">// → SELECT name, email FROM users WHERE age &gt; 21 ORDER BY created_at DESC LIMIT 10</span>
             </code>
           </pre>
@@ -182,7 +182,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              sqw<span className="code-string">`nocap:users drip:name,email fire:john,john@test.com flex:id`</span>{"\n\n"}
+              gull<span className="code-string">`nocap:users drip:name,email fire:john,john@test.com flex:id`</span>{"\n\n"}
               <span className="code-comment">// → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id</span>
             </code>
           </pre>
@@ -199,7 +199,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              sqw<span className="code-string">`glow:users rizz:status=active,verified=true sus:id=1 flex:*`</span>{"\n\n"}
+              gull<span className="code-string">`glow:users rizz:status=active,verified=true sus:id=1 flex:*`</span>{"\n\n"}
               <span className="code-comment">// → UPDATE users SET status = $1, verified = $2 WHERE id = $3 RETURNING *</span>
             </code>
           </pre>
@@ -216,7 +216,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              sqw<span className="code-string">`yeet:sessions sus:expired=true`</span>{"\n\n"}
+              gull<span className="code-string">`yeet:sessions sus:expired=true`</span>{"\n\n"}
               <span className="code-comment">// → DELETE FROM sessions WHERE expired = $1</span>
             </code>
           </pre>
@@ -233,7 +233,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              sqw<span className="code-string">`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total`</span>{"\n\n"}
+              gull<span className="code-string">`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total`</span>{"\n\n"}
               <span className="code-comment">// → SELECT users.name, orders.total FROM users LEFT JOIN orders ON users.id = orders.user_id</span>
             </code>
           </pre>

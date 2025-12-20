@@ -11,22 +11,22 @@ interface CodeExample {
 const ogExamples: CodeExample[] = [
   {
     label: "SELECT",
-    sqaull: 'sqw`from:users sel:name,email whr:age>18 ord:created_at/desc lim:10`',
+    sqaull: 'gull`from:users sel:name,email whr:age>18 ord:created_at/desc lim:10`',
     sql: "SELECT name, email FROM users WHERE age > 18 ORDER BY created_at DESC LIMIT 10",
   },
   {
     label: "INSERT",
-    sqaull: 'sqw`ins:users cols:name,email vals:john,john@test.com ret:id`',
+    sqaull: 'gull`ins:users cols:name,email vals:john,john@test.com ret:id`',
     sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
   },
   {
     label: "UPDATE",
-    sqaull: 'sqw`upd:users set:status=active whr:id=1 ret:*`',
+    sqaull: 'gull`upd:users set:status=active whr:id=1 ret:*`',
     sql: "UPDATE users SET status = $1 WHERE id = $2 RETURNING *",
   },
   {
     label: "JOIN",
-    sqaull: 'sqw`from:orders join:users/left on:orders.user_id=users.id sel:*`',
+    sqaull: 'gull`from:orders join:users/left on:orders.user_id=users.id sel:*`',
     sql: "SELECT * FROM orders LEFT JOIN users ON orders.user_id = users.id",
   },
 ];
@@ -34,22 +34,22 @@ const ogExamples: CodeExample[] = [
 const genAlphaExamples: CodeExample[] = [
   {
     label: "SELECT",
-    sqaull: 'sqw`main:users slay:name,email sus:age>18 vibe:created_at/desc bet:10`',
+    sqaull: 'gull`main:users slay:name,email sus:age>18 vibe:created_at/desc bet:10`',
     sql: "SELECT name, email FROM users WHERE age > 18 ORDER BY created_at DESC LIMIT 10",
   },
   {
     label: "INSERT",
-    sqaull: 'sqw`nocap:users drip:name,email fire:john,john@test.com flex:id`',
+    sqaull: 'gull`nocap:users drip:name,email fire:john,john@test.com flex:id`',
     sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
   },
   {
     label: "UPDATE",
-    sqaull: 'sqw`glow:users rizz:status=active sus:id=1 flex:*`',
+    sqaull: 'gull`glow:users rizz:status=active sus:id=1 flex:*`',
     sql: "UPDATE users SET status = $1 WHERE id = $2 RETURNING *",
   },
   {
     label: "DELETE",
-    sqaull: 'sqw`yeet:sessions sus:expired=true`',
+    sqaull: 'gull`yeet:sessions sus:expired=true`',
     sql: "DELETE FROM sessions WHERE expired = $1",
   },
 ];
@@ -61,7 +61,7 @@ function highlightSqaull(code: string): ReactNode[] {
   let keyIndex = 0;
 
   const patterns = [
-    { regex: /^(sqw)(`)/,  classes: ["code-function", ""] },
+    { regex: /^(gull)(`)/,  classes: ["code-function", ""] },
     { regex: /^(from|sel|whr|ord|lim|off|grp|hav|join|on|ins|cols|vals|upd|set|del|ret)(:)/, classes: ["code-keyword", ""] },
     { regex: /^(main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex)(:)/, classes: ["code-keyword", ""] },
     { regex: /^(\d+)/, classes: ["code-number"] },
