@@ -8,8 +8,8 @@ export function SyntaxToggle() {
   return (
     <div className="syntax-toggle">
       <button
-        onClick={() => setMode("og")}
-        className={mode === "og" ? "active" : ""}
+        onClick={() => setMode("classic")}
+        className={mode === "classic" ? "active" : ""}
       >
         Classic
       </button>

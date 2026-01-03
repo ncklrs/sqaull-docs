@@ -150,7 +150,7 @@ function highlightSql(code: string): ReactNode[] {
 }
 
 interface AnimatedTerminalProps {
-  mode: "og" | "genalpha";
+  mode: "classic" | "genalpha";
 }
 
 export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
@@ -160,7 +160,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
   const [phase, setPhase] = useState<"typing" | "executing" | "result" | "pause">("typing");
   const [isExecuting, setIsExecuting] = useState(false);
 
-  const examples = mode === "og" ? ogExamples : genAlphaExamples;
+  const examples = mode === "classic" ? ogExamples : genAlphaExamples;
   const currentExample = examples[currentIndex];
 
   const typeText = useCallback(
@@ -232,7 +232,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
         <div className="terminal-dot bg-[#febc2e]" />
         <div className="terminal-dot bg-[#28c840]" />
         <span className="ml-4 text-text-muted text-sm font-mono">
-          genaql {mode === "og" ? "Classic" : "Gen Alpha"}
+          genaql {mode === "classic" ? "Classic" : "Gen Alpha"}
         </span>
         <span className="ml-auto badge badge-lime text-xs">
           {currentExample.label}

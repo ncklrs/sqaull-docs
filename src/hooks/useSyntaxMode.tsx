@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
-type SyntaxMode = "og" | "genalpha";
+type SyntaxMode = "classic" | "genalpha";
 
 interface SyntaxModeContextType {
   mode: SyntaxMode;
@@ -17,7 +17,7 @@ export function SyntaxModeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<SyntaxMode>("genalpha");
 
   const toggle = useCallback(() => {
-    setMode((prev) => (prev === "og" ? "genalpha" : "og"));
+    setMode((prev) => (prev === "classic" ? "genalpha" : "classic"));
   }, []);
 
   const value = {

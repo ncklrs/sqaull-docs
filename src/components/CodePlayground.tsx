@@ -130,7 +130,7 @@ function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
 
 export function CodePlayground() {
   const [selectedExample, setSelectedExample] = useState(0);
-  const [syntaxMode, setSyntaxMode] = useState<"og" | "genalpha">("genalpha");
+  const [syntaxMode, setSyntaxMode] = useState<"classic" | "genalpha">("genalpha");
   const [isRunning, setIsRunning] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
 
@@ -172,8 +172,8 @@ export function CodePlayground() {
       <div className="flex justify-center mb-6">
         <div className="syntax-toggle">
           <button
-            onClick={() => setSyntaxMode("og")}
-            className={syntaxMode === "og" ? "active" : ""}
+            onClick={() => setSyntaxMode("classic")}
+            className={syntaxMode === "classic" ? "active" : ""}
           >
             Classic
           </button>
@@ -200,7 +200,7 @@ export function CodePlayground() {
             <pre className="code-block whitespace-pre-wrap break-all">
               <code>
                 {highlightCode(
-                  syntaxMode === "og" ? currentExample.og : currentExample.genalpha,
+                  syntaxMode === "classic" ? currentExample.og : currentExample.genalpha,
                   "genaql"
                 )}
               </code>
