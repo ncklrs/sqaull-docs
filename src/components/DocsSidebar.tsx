@@ -16,7 +16,6 @@ const navigation = [
     title: "Core Concepts",
     items: [
       { title: "Syntax Reference", href: "/docs/syntax" },
-      { title: "Gen Alpha Mode", href: "/docs/gen-alpha" },
       { title: "Type Safety", href: "/docs/type-safety" },
       { title: "Dialects", href: "/docs/dialects" },
     ],

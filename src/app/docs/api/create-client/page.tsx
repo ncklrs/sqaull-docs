@@ -16,29 +16,14 @@ export default function CreateClientApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'genaql';`}
-        genalpha={`import { createClient } from 'genaql';`}
+        code={`import { createClient } from 'genaql';`}
         title="import.ts"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Usage</h2>
 
       <CodeBlock
-        og={`import { createClient, cook } from 'genaql';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
-
-const db = createClient({
-  dialect: 'postgres',
-  pool
-});
-
-// Execute queries
-const users = await db.query(cook\`from:users sel:*\`);`}
-        genalpha={`import { createClient, cook } from 'genaql';
+        code={`import { createClient, cook } from 'genaql';
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -58,32 +43,7 @@ const users = await db.query(cook\`main:users slay:*\`);`}
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Configuration Options</h2>
 
       <CodeBlock
-        og={`const db = createClient({
-  // Required: Database dialect
-  dialect: 'postgres' | 'mysql' | 'sqlite',
-
-  // Connection (one of these)
-  pool: Pool,               // pg or mysql2 pool
-  connection: Connection,   // Single connection
-  database: string,         // SQLite file path
-
-  // Optional: Schema for type safety
-  schema: Schema,
-
-  // Optional: Query logging
-  logging: true,  // or custom function
-  // logging: (sql, params, duration) => console.log(sql)
-
-  // Optional: Runtime validation
-  validate: process.env.NODE_ENV === 'development',
-
-  // Optional: Soft delete behavior
-  softDelete: true,  // Uses schema config
-
-  // Optional: Auto-timestamps
-  timestamps: true,  // Uses schema config
-});`}
-        genalpha={`const db = createClient({
+        code={`const db = createClient({
   // Required: Database dialect
   dialect: 'postgres' | 'mysql' | 'sqlite',
 
@@ -165,32 +125,7 @@ const users = await db.query(cook\`main:users slay:*\`);`}
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Query Methods</h2>
 
       <CodeBlock
-        og={`// Select multiple rows
-const users = await db.query(cook\`from:users sel:* whr:active=true\`);
-// users: User[]
-
-// Select single row
-const user = await db.queryOne(cook\`from:users sel:* whr:id=1\`);
-// user: User | null
-
-// Insert and return
-const result = await db.execute(
-  cook\`ins:users cols:name,email vals:John,john@test.com ret:id\`
-);
-// result: { id: 1 }
-
-// Update
-const updated = await db.execute(
-  cook\`upd:users set:status=active whr:id=1 ret:*\`
-);
-// updated: { id: 1, status: 'active', ... }
-
-// Delete
-const deleted = await db.execute(
-  cook\`del:users whr:id=1 ret:id\`
-);
-// deleted: { id: 1 }`}
-        genalpha={`// Select multiple rows
+        code={`// Select multiple rows
 const users = await db.query(cook\`main:users slay:* sus:active=true\`);
 // users: User[]
 
@@ -221,31 +156,7 @@ const deleted = await db.execute(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With Schema (Type Safe)</h2>
 
       <CodeBlock
-        og={`import { createClient, cook, defineSchema } from 'genaql';
-
-const schema = defineSchema({
-  users: {
-    id: 'serial',
-    name: 'text',
-    email: 'text'
-  }
-});
-
-const db = createClient({
-  dialect: 'postgres',
-  pool,
-  schema
-});
-
-// TypeScript knows the return type!
-const users = await db.query(cook\`from:users sel:id,name\`);
-// users: Array<{ id: number; name: string }>
-
-// Errors on invalid columns
-const bad = await db.query(cook\`from:users sel:invalid\`);
-//                                             ^^^^^^^
-// Type Error: Column 'invalid' does not exist`}
-        genalpha={`import { createClient, cook, defineSchema } from 'genaql';
+        code={`import { createClient, cook, defineSchema } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -275,18 +186,7 @@ const bad = await db.query(cook\`main:users slay:invalid\`);
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Lifecycle</h2>
 
       <CodeBlock
-        og={`// Create client at app startup
-const db = createClient({ /* ... */ });
-
-// Use throughout your app
-export { db };
-
-// Close on shutdown
-process.on('SIGTERM', async () => {
-  await db.close();
-  process.exit(0);
-});`}
-        genalpha={`// Create client at app startup
+        code={`// Create client at app startup
 const db = createClient({ /* ... */ });
 
 // Use throughout your app

@@ -16,11 +16,7 @@ export default function MigrationsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Creating Migrations</h2>
 
       <CodeBlock
-        og={`# Create a new migration
-npx genaql migrate:create add_users_table
-
-# Creates: migrations/20240115120000_add_users_table.ts`}
-        genalpha={`# Create a new migration
+        code={`# Create a new migration
 npx genaql migrate:create add_users_table
 
 # Creates: migrations/20240115120000_add_users_table.ts`}
@@ -30,29 +26,7 @@ npx genaql migrate:create add_users_table
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Migration Structure</h2>
 
       <CodeBlock
-        og={`import { Migration } from 'genaql';
-
-export const migration: Migration = {
-  up: async (db) => {
-    await db.schema.createTable('users', (table) => {
-      table.serial('id').primary();
-      table.text('name').notNull();
-      table.text('email').notNull().unique();
-      table.text('password_hash').notNull();
-      table.text('role').default('user');
-      table.timestamp('created_at').default('now()');
-      table.timestamp('updated_at');
-    });
-
-    // Create index
-    await db.schema.createIndex('users', 'email');
-  },
-
-  down: async (db) => {
-    await db.schema.dropTable('users');
-  }
-};`}
-        genalpha={`import { Migration } from 'genaql';
+        code={`import { Migration } from 'genaql';
 
 export const migration: Migration = {
   up: async (db) => {
@@ -80,21 +54,7 @@ export const migration: Migration = {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Running Migrations</h2>
 
       <CodeBlock
-        og={`# Run all pending migrations
-npx genaql migrate
-
-# Run migrations up to a specific version
-npx genaql migrate --to 20240115120000
-
-# Rollback last migration
-npx genaql migrate:rollback
-
-# Rollback all migrations
-npx genaql migrate:rollback --all
-
-# Check migration status
-npx genaql migrate:status`}
-        genalpha={`# Run all pending migrations
+        code={`# Run all pending migrations
 npx genaql migrate
 
 # Run migrations up to a specific version
@@ -114,32 +74,7 @@ npx genaql migrate:status`}
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Schema Builder API</h2>
 
       <CodeBlock
-        og={`// Create table
-await db.schema.createTable('posts', (table) => {
-  table.serial('id').primary();
-  table.integer('user_id').references('users.id').onDelete('cascade');
-  table.text('title').notNull();
-  table.text('content');
-  table.boolean('published').default(false);
-  table.json('metadata');
-  table.timestamps();  // created_at + updated_at
-});
-
-// Alter table
-await db.schema.alterTable('posts', (table) => {
-  table.text('slug').notNull().unique();
-  table.dropColumn('metadata');
-  table.renameColumn('content', 'body');
-});
-
-// Add index
-await db.schema.createIndex('posts', ['user_id', 'published']);
-await db.schema.createIndex('posts', 'slug', { unique: true });
-
-// Drop table
-await db.schema.dropTable('posts');
-await db.schema.dropTableIfExists('posts');`}
-        genalpha={`// Create table
+        code={`// Create table
 await db.schema.createTable('posts', (table) => {
   table.serial('id').primary();
   table.integer('user_id').references('users.id').onDelete('cascade');

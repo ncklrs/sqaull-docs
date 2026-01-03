@@ -1,19 +1,17 @@
 "use client";
 
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 import { ReactNode } from "react";
 
 interface CodeBlockProps {
-  og: string;
-  genalpha: string;
+  code?: string;
+  og?: string;
+  genalpha?: string;
   output?: string;
   title?: string;
-  showBoth?: boolean;
 }
 
 function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
   const parts: ReactNode[] = [];
-  let remaining = code;
   let key = 0;
 
   if (type === "genaql") {
@@ -89,42 +87,9 @@ function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
   return parts.length > 0 ? parts : [<span key={0}>{code}</span>];
 }
 
-export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockProps) {
-  const { mode, isGenAlpha } = useSyntaxMode();
-  const code = isGenAlpha ? genalpha : og;
-
-  if (showBoth) {
-    return (
-      <div className="grid md:grid-cols-2 gap-4 mb-6">
-        <div className="terminal">
-          <div className="terminal-header">
-            <div className="terminal-dot bg-[#ff5f57]" />
-            <div className="terminal-dot bg-[#febc2e]" />
-            <div className="terminal-dot bg-[#28c840]" />
-            <span className="ml-4 text-text-muted text-sm">Classic Syntax</span>
-          </div>
-          <div className="terminal-body">
-            <pre className="text-sm whitespace-pre-wrap break-all">
-              <code>{highlightCode(og, "genaql")}</code>
-            </pre>
-          </div>
-        </div>
-        <div className="terminal">
-          <div className="terminal-header">
-            <div className="terminal-dot bg-[#ff5f57]" />
-            <div className="terminal-dot bg-[#febc2e]" />
-            <div className="terminal-dot bg-[#28c840]" />
-            <span className="ml-4 text-text-muted text-sm">Gen Alpha</span>
-          </div>
-          <div className="terminal-body">
-            <pre className="text-sm whitespace-pre-wrap break-all">
-              <code>{highlightCode(genalpha, "genaql")}</code>
-            </pre>
-          </div>
-        </div>
-      </div>
-    );
-  }
+export function CodeBlock({ code, og, genalpha, output, title }: CodeBlockProps) {
+  // Always use Gen Alpha syntax - prioritize genalpha prop, fallback to code
+  const displayCode = genalpha || code || og || "";
 
   return (
     <div className="terminal mb-6">
@@ -132,12 +97,11 @@ export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockPr
         <div className="terminal-dot bg-[#ff5f57]" />
         <div className="terminal-dot bg-[#febc2e]" />
         <div className="terminal-dot bg-[#28c840]" />
-        <span className="ml-4 text-text-muted text-sm">{title || (isGenAlpha ? "Gen Alpha" : "Classic")}</span>
-        <span className="ml-auto badge badge-lime text-xs">{mode.toUpperCase()}</span>
+        <span className="ml-4 text-text-muted text-sm">{title || "Gen Alpha"}</span>
       </div>
       <div className="terminal-body">
         <pre className="text-sm whitespace-pre-wrap break-all">
-          <code>{highlightCode(code, "genaql")}</code>
+          <code>{highlightCode(displayCode, "genaql")}</code>
         </pre>
         {output && (
           <div className="mt-4 pt-4 border-t border-elevated">
@@ -152,11 +116,10 @@ export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockPr
   );
 }
 
-export function InlineCode({ og, genalpha }: { og: string; genalpha: string }) {
-  const { isGenAlpha } = useSyntaxMode();
+export function InlineCode({ children }: { children: string }) {
   return (
     <code className="px-1.5 py-0.5 bg-surface rounded text-neon-lime text-sm font-mono">
-      {isGenAlpha ? genalpha : og}
+      {children}
     </code>
   );
 }

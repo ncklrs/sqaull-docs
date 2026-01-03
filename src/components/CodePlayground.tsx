@@ -5,7 +5,6 @@ import { useState, ReactNode } from "react";
 interface Example {
   name: string;
   emoji: string;
-  og: string;
   genalpha: string;
   sql: string;
 }
@@ -14,42 +13,36 @@ const examples: Example[] = [
   {
     name: "Basic Query",
     emoji: "🔍",
-    og: "from:users sel:name,email whr:age>18",
     genalpha: "main:users slay:name,email sus:age>18",
     sql: "SELECT name, email FROM users WHERE age > 18",
   },
   {
     name: "Sorting",
     emoji: "📊",
-    og: "from:posts sel:title,views ord:views/desc lim:5",
     genalpha: "main:posts slay:title,views vibe:views/desc bet:5",
     sql: "SELECT title, views FROM posts ORDER BY views DESC LIMIT 5",
   },
   {
     name: "Insert",
     emoji: "➕",
-    og: "ins:users cols:name,email vals:john,john@test.com ret:id",
     genalpha: "nocap:users drip:name,email fire:john,john@test.com flex:id",
     sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
   },
   {
     name: "Update",
     emoji: "✏️",
-    og: "upd:users set:verified=true whr:id=1 ret:*",
     genalpha: "glow:users rizz:verified=true sus:id=1 flex:*",
     sql: "UPDATE users SET verified = $1 WHERE id = $2 RETURNING *",
   },
   {
     name: "Delete",
     emoji: "🗑️",
-    og: "del:sessions whr:expired=true",
     genalpha: "yeet:sessions sus:expired=true",
     sql: "DELETE FROM sessions WHERE expired = $1",
   },
   {
     name: "Join",
     emoji: "🔗",
-    og: "from:orders join:users/left on:orders.user_id=users.id sel:*",
     genalpha: "main:orders link:users/left match:orders.user_id=users.id slay:*",
     sql: "SELECT * FROM orders LEFT JOIN users ON orders.user_id = users.id",
   },
@@ -57,11 +50,10 @@ const examples: Example[] = [
 
 function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
   const parts: ReactNode[] = [];
-  let remaining = code;
   let key = 0;
 
   if (type === "genaql") {
-    const keywords = /(from|sel|whr|ord|lim|off|grp|hav|join|on|ins|cols|vals|upd|set|del|ret|main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex):/g;
+    const keywords = /(main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex):/g;
     const modifiers = /(\/desc|\/asc|\/left|\/right|\/full)/g;
 
     let lastIndex = 0;
@@ -130,7 +122,6 @@ function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
 
 export function CodePlayground() {
   const [selectedExample, setSelectedExample] = useState(0);
-  const [syntaxMode, setSyntaxMode] = useState<"classic" | "genalpha">("genalpha");
   const [isRunning, setIsRunning] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
 
@@ -168,24 +159,6 @@ export function CodePlayground() {
         ))}
       </div>
 
-      {/* Syntax toggle */}
-      <div className="flex justify-center mb-6">
-        <div className="syntax-toggle">
-          <button
-            onClick={() => setSyntaxMode("classic")}
-            className={syntaxMode === "classic" ? "active" : ""}
-          >
-            Classic
-          </button>
-          <button
-            onClick={() => setSyntaxMode("genalpha")}
-            className={syntaxMode === "genalpha" ? "active" : ""}
-          >
-            Gen Alpha
-          </button>
-        </div>
-      </div>
-
       {/* Code display */}
       <div className="grid md:grid-cols-2 gap-4">
         {/* Input */}
@@ -199,10 +172,7 @@ export function CodePlayground() {
           <div className="terminal-body relative">
             <pre className="code-block whitespace-pre-wrap break-all">
               <code>
-                {highlightCode(
-                  syntaxMode === "classic" ? currentExample.og : currentExample.genalpha,
-                  "genaql"
-                )}
+                {highlightCode(currentExample.genalpha, "genaql")}
               </code>
             </pre>
             {isRunning && (

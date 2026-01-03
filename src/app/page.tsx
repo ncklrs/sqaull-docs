@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/Navigation";
 import { AnimatedTerminal } from "@/components/AnimatedTerminal";
@@ -8,8 +5,6 @@ import { CodePlayground } from "@/components/CodePlayground";
 import { Features } from "@/components/Features";
 
 export default function Home() {
-  const [terminalMode, setTerminalMode] = useState<"classic" | "genalpha">("genalpha");
-
   return (
     <div className="gradient-mesh min-h-screen">
       <Navigation />
@@ -34,8 +29,8 @@ export default function Home() {
 
             {/* Subheading */}
             <p className="text-xl sm:text-2xl text-text-secondary max-w-3xl mx-auto mb-4 animate-[slide-up_0.5s_ease-out_0.1s] opacity-0" style={{ animationFillMode: "forwards" }}>
-              What if writing SQL felt like writing{" "}
-              <span className="text-neon-cyan">Tailwind</span>?
+              Write SQL queries that actually{" "}
+              <span className="text-neon-cyan">slay</span>
             </p>
             <p className="text-lg text-text-muted max-w-2xl mx-auto mb-8 animate-[slide-up_0.5s_ease-out_0.2s] opacity-0" style={{ animationFillMode: "forwards" }}>
               A composable query language with type safety, multi-dialect support, and optional Gen Alpha slang for the chronically online.
@@ -59,28 +54,11 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Syntax toggle for terminal */}
-            <div className="flex justify-center mb-8">
-              <div className="syntax-toggle">
-                <button
-                  onClick={() => setTerminalMode("classic")}
-                  className={terminalMode === "classic" ? "active" : ""}
-                >
-                  Classic
-                </button>
-                <button
-                  onClick={() => setTerminalMode("genalpha")}
-                  className={terminalMode === "genalpha" ? "active" : ""}
-                >
-                  Gen Alpha 💀
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Animated Terminal */}
           <div className="animate-[slide-up_0.5s_ease-out_0.4s] opacity-0" style={{ animationFillMode: "forwards" }}>
-            <AnimatedTerminal mode={terminalMode} />
+            <AnimatedTerminal />
           </div>
         </div>
       </section>
@@ -140,11 +118,11 @@ LIMIT 10`}
               <div className="terminal-body flex items-center">
                 <pre className="text-sm">
                   <code>
-                    <span className="code-keyword">from</span>:users{" "}
-                    <span className="code-keyword">sel</span>:name,email,created_at{" "}
-                    <span className="code-keyword">whr</span>:age{">"}18,status=active{" "}
-                    <span className="code-keyword">ord</span>:created_at<span className="code-operator">/desc</span>{" "}
-                    <span className="code-keyword">lim</span>:<span className="code-number">10</span>
+                    <span className="code-keyword">main</span>:users{" "}
+                    <span className="code-keyword">slay</span>:name,email,created_at{" "}
+                    <span className="code-keyword">sus</span>:age{">"}18,status=active{" "}
+                    <span className="code-keyword">vibe</span>:created_at<span className="code-operator">/desc</span>{" "}
+                    <span className="code-keyword">bet</span>:<span className="code-number">10</span>
                   </code>
                 </pre>
               </div>
@@ -155,97 +133,53 @@ LIMIT 10`}
 
       {/* Syntax Reference Quick Look */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-abyss/50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="badge badge-pink mb-4">Syntax</span>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Two Flavors, Same SQL
+              Gen Alpha Syntax
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Choose your vibe: classic syntax for SQL purists, or Gen Alpha slang for maximum chaos energy
+              SQL keywords reimagined with Gen Alpha slang for maximum chaos energy
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Classic Syntax */}
-            <div className="feature-card">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">📋</span>
-                <div>
-                  <h3 className="text-xl font-semibold">Classic Syntax</h3>
-                  <p className="text-text-muted text-sm">For SQL purists</p>
-                </div>
-              </div>
-              <div className="space-y-3 font-mono text-sm">
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">from:</span></span>
-                  <span className="text-text-muted">FROM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">sel:</span></span>
-                  <span className="text-text-muted">SELECT</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">whr:</span></span>
-                  <span className="text-text-muted">WHERE</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">ord:</span></span>
-                  <span className="text-text-muted">ORDER BY</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">ins:</span></span>
-                  <span className="text-text-muted">INSERT</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">upd:</span></span>
-                  <span className="text-text-muted">UPDATE</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">del:</span></span>
-                  <span className="text-text-muted">DELETE</span>
-                </div>
+          <div className="feature-card max-w-xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-3xl">skull</span>
+              <div>
+                <h3 className="text-xl font-semibold">Gen Alpha Slang</h3>
+                <p className="text-text-muted text-sm">No cap, fr fr</p>
               </div>
             </div>
-
-            {/* Gen Alpha Syntax */}
-            <div className="feature-card">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">💀</span>
-                <div>
-                  <h3 className="text-xl font-semibold">Gen Alpha Slang</h3>
-                  <p className="text-text-muted text-sm">No cap, fr fr</p>
-                </div>
+            <div className="space-y-3 font-mono text-sm">
+              <div className="flex justify-between">
+                <span><span className="code-keyword">main:</span></span>
+                <span className="text-text-muted">FROM (main character)</span>
               </div>
-              <div className="space-y-3 font-mono text-sm">
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">main:</span></span>
-                  <span className="text-text-muted">FROM (main character)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">slay:</span></span>
-                  <span className="text-text-muted">SELECT (slay those cols)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">sus:</span></span>
-                  <span className="text-text-muted">WHERE (filter the sus)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">vibe:</span></span>
-                  <span className="text-text-muted">ORDER BY (vibe check)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">nocap:</span></span>
-                  <span className="text-text-muted">INSERT (no cap)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">glow:</span></span>
-                  <span className="text-text-muted">UPDATE (glow up)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span><span className="code-keyword">yeet:</span></span>
-                  <span className="text-text-muted">DELETE (yeet it)</span>
-                </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">slay:</span></span>
+                <span className="text-text-muted">SELECT (slay those cols)</span>
+              </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">sus:</span></span>
+                <span className="text-text-muted">WHERE (filter the sus)</span>
+              </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">vibe:</span></span>
+                <span className="text-text-muted">ORDER BY (vibe check)</span>
+              </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">nocap:</span></span>
+                <span className="text-text-muted">INSERT (no cap)</span>
+              </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">glow:</span></span>
+                <span className="text-text-muted">UPDATE (glow up)</span>
+              </div>
+              <div className="flex justify-between">
+                <span><span className="code-keyword">yeet:</span></span>
+                <span className="text-text-muted">DELETE (yeet it)</span>
               </div>
             </div>
           </div>

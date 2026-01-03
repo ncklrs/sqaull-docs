@@ -1,5 +1,3 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
 
 export default function QuickStartPage() {
@@ -20,10 +18,7 @@ export default function QuickStartPage() {
       </p>
 
       <CodeBlock
-        og={`import { cook } from 'genaql';
-
-// That's it! You're ready to write queries`}
-        genalpha={`import { cook } from 'genaql';
+        code={`import { cook } from 'genaql';
 
 // That's it! You're ready to write queries`}
         title="app.ts"
@@ -36,16 +31,7 @@ export default function QuickStartPage() {
       </p>
 
       <CodeBlock
-        og={`const users = cook\`from:users sel:id,name,email whr:active=true lim:10\`;
-
-// Get the SQL string
-console.log(users.toSQL());
-// → SELECT id, name, email FROM users WHERE active = $1 LIMIT $2
-
-// Get SQL with params for safe execution
-const { sql, params } = users.toParams();
-// → { sql: "SELECT ... WHERE active = $1 LIMIT $2", params: [true, 10] }`}
-        genalpha={`const users = cook\`main:users slay:id,name,email sus:active=true bet:10\`;
+        code={`const users = cook\`main:users slay:id,name,email sus:active=true bet:10\`;
 
 // Get the SQL string
 console.log(users.toSQL());
@@ -64,25 +50,7 @@ const { sql, params } = users.toParams();
       </p>
 
       <CodeBlock
-        og={`import { createClient } from 'genaql';
-import { Pool } from 'pg';
-
-// Create a PostgreSQL pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
-
-// Create a genaql client
-const db = createClient({
-  dialect: 'postgres',
-  pool
-});
-
-// Now you can run queries!
-const users = await db.query(
-  cook\`from:users sel:* whr:role=admin\`
-);`}
-        genalpha={`import { createClient } from 'genaql';
+        code={`import { createClient } from 'genaql';
 import { Pool } from 'pg';
 
 // Create a PostgreSQL pool
@@ -110,23 +78,7 @@ const users = await db.query(
       </p>
 
       <CodeBlock
-        og={`import { defineSchema, cook } from 'genaql';
-
-const schema = defineSchema({
-  users: {
-    id: 'serial',
-    name: 'text',
-    email: 'text',
-    role: 'text',
-    created_at: 'timestamp'
-  }
-});
-
-// TypeScript will catch errors!
-const query = cook\`from:users sel:name,email,nonexistent\`;
-//                                        ^^^^^^^^^^^
-// Error: Column 'nonexistent' does not exist on table 'users'`}
-        genalpha={`import { defineSchema, cook } from 'genaql';
+        code={`import { defineSchema, cook } from 'genaql';
 
 const schema = defineSchema({
   users: {

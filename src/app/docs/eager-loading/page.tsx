@@ -1,18 +1,12 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function EagerLoadingPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Eager Loading</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Efficiently load related data in a single query to avoid N+1 problems.
-        {isGenAlpha && " Bring the whole fam in one trip 🚗"}
       </p>
 
       <div className="line-glow my-8" />
@@ -24,17 +18,7 @@ export default function EagerLoadingPage() {
       </p>
 
       <CodeBlock
-        og={`// ❌ Bad: N+1 queries
-const users = await db.query(cook\`from:users sel:*\`);  // 1 query
-
-for (const user of users) {
-  // N additional queries!
-  user.posts = await db.query(cook\`from:posts sel:* whr:user_id=\${user.id}\`);
-}
-
-// ✓ Good: Single query with eager loading
-const users = await db.query(cook\`from:users sel:* with:posts\`);  // 1-2 queries total`}
-        genalpha={`// ❌ Bad: N+1 queries
+        code={`// Bad: N+1 queries
 const users = await db.query(cook\`main:users slay:*\`);  // 1 query
 
 for (const user of users) {
@@ -42,7 +26,7 @@ for (const user of users) {
   user.posts = await db.query(cook\`main:posts slay:* sus:user_id=\${user.id}\`);
 }
 
-// ✓ Good: Single query with eager loading
+// Good: Single query with eager loading
 const users = await db.query(cook\`main:users slay:* fam:posts\`);  // 1-2 queries total`}
         title="n-plus-one.ts"
       />
@@ -50,16 +34,7 @@ const users = await db.query(cook\`main:users slay:* fam:posts\`);  // 1-2 queri
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Eager Loading</h2>
 
       <CodeBlock
-        og={`// Load single relation
-const users = await db.query(
-  cook\`from:users sel:* with:profile\`
-);
-
-// Load multiple relations
-const users = await db.query(
-  cook\`from:users sel:* with:profile,posts\`
-);`}
-        genalpha={`// Load single relation
+        code={`// Load single relation
 const users = await db.query(
   cook\`main:users slay:* fam:profile\`
 );
@@ -74,18 +49,7 @@ const users = await db.query(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Nested Eager Loading</h2>
 
       <CodeBlock
-        og={`// Load nested relations with dot notation
-const users = await db.query(
-  cook\`from:users sel:* with:posts.comments\`
-);
-// Result: users → posts → comments
-
-// Multiple levels deep
-const users = await db.query(
-  cook\`from:users sel:* with:posts.comments.author\`
-);
-// Result: users → posts → comments → author`}
-        genalpha={`// Load nested relations with dot notation
+        code={`// Load nested relations with dot notation
 const users = await db.query(
   cook\`main:users slay:* fam:posts.comments\`
 );
@@ -102,24 +66,7 @@ const users = await db.query(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Constrained Eager Loading</h2>
 
       <CodeBlock
-        og={`// Filter related records
-const users = await db.query(
-  cook\`from:users sel:* with:posts(whr:published=true)\`
-);
-// Only loads published posts
-
-// Order related records
-const users = await db.query(
-  cook\`from:users sel:* with:posts(ord:created_at/desc)\`
-);
-// Posts ordered by date
-
-// Limit related records
-const users = await db.query(
-  cook\`from:users sel:* with:posts(lim:5 ord:created_at/desc)\`
-);
-// Only latest 5 posts per user`}
-        genalpha={`// Filter related records
+        code={`// Filter related records
 const users = await db.query(
   cook\`main:users slay:* fam:posts(sus:published=true)\`
 );
@@ -142,12 +89,7 @@ const users = await db.query(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Select Specific Columns</h2>
 
       <CodeBlock
-        og={`// Select only needed columns from relations
-const users = await db.query(
-  cook\`from:users sel:id,name with:posts(sel:id,title)\`
-);
-// { id: 1, name: "John", posts: [{ id: 1, title: "Hello" }] }`}
-        genalpha={`// Select only needed columns from relations
+        code={`// Select only needed columns from relations
 const users = await db.query(
   cook\`main:users slay:id,name fam:posts(slay:id,title)\`
 );
@@ -175,16 +117,7 @@ const users = await db.query(
       </div>
 
       <CodeBlock
-        og={`// Force join strategy
-const users = await db.query(
-  cook\`from:users sel:* with:profile/join\`
-);
-
-// Force subquery strategy
-const users = await db.query(
-  cook\`from:users sel:* with:posts/subquery\`
-);`}
-        genalpha={`// Force join strategy
+        code={`// Force join strategy
 const users = await db.query(
   cook\`main:users slay:* fam:profile/join\`
 );

@@ -1,18 +1,12 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function TransactionsPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Transactions</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Execute multiple operations atomically with database transactions.
-        {isGenAlpha && " All or nothing energy fr fr 💯"}
       </p>
 
       <div className="line-glow my-8" />
@@ -20,20 +14,7 @@ export default function TransactionsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Transactions</h2>
 
       <CodeBlock
-        og={`// Automatic transaction with callback
-await db.transaction(async (trx) => {
-  // All queries use the transaction
-  const user = await trx.query(
-    cook\`ins:users cols:name,email vals:John,john@test.com ret:id\`
-  );
-
-  await trx.query(
-    cook\`ins:profiles cols:user_id,bio vals:\${user.id},New user\`
-  );
-
-  // If any query fails, all changes are rolled back
-});`}
-        genalpha={`// Automatic transaction with callback
+        code={`// Automatic transaction with callback
 await db.transaction(async (trx) => {
   // All queries use the transaction
   const user = await trx.query(
@@ -52,21 +33,7 @@ await db.transaction(async (trx) => {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Manual Transactions</h2>
 
       <CodeBlock
-        og={`// Manual control over commit/rollback
-const trx = await db.beginTransaction();
-
-try {
-  await trx.query(cook\`upd:accounts set:balance=balance-100 whr:id=1\`);
-  await trx.query(cook\`upd:accounts set:balance=balance+100 whr:id=2\`);
-
-  // Commit if all successful
-  await trx.commit();
-} catch (error) {
-  // Rollback on any error
-  await trx.rollback();
-  throw error;
-}`}
-        genalpha={`// Manual control over commit/rollback
+        code={`// Manual control over commit/rollback
 const trx = await db.beginTransaction();
 
 try {
@@ -86,26 +53,7 @@ try {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Nested Transactions (Savepoints)</h2>
 
       <CodeBlock
-        og={`await db.transaction(async (trx) => {
-  await trx.query(cook\`ins:orders cols:user_id,total vals:1,100\`);
-
-  // Create a savepoint
-  await trx.transaction(async (nested) => {
-    await nested.query(cook\`ins:order_items cols:order_id,product_id vals:1,42\`);
-
-    // This inner transaction can be rolled back independently
-    if (outOfStock) {
-      throw new Error('Out of stock');
-      // Only rolls back to savepoint, outer transaction continues
-    }
-  }).catch(() => {
-    // Handle nested transaction failure
-    console.log('Order item failed, continuing without it');
-  });
-
-  // Outer transaction still commits
-});`}
-        genalpha={`await db.transaction(async (trx) => {
+        code={`await db.transaction(async (trx) => {
   await trx.query(cook\`nocap:orders drip:user_id,total fire:1,100\`);
 
   // Create a savepoint
@@ -130,21 +78,7 @@ try {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Isolation Levels</h2>
 
       <CodeBlock
-        og={`// Set isolation level
-await db.transaction(
-  async (trx) => {
-    // Queries here see a consistent snapshot
-    const balance = await trx.query(cook\`from:accounts sel:balance whr:id=1\`);
-  },
-  { isolation: 'serializable' }
-);
-
-// Available levels:
-// - 'read uncommitted'
-// - 'read committed' (default)
-// - 'repeatable read'
-// - 'serializable'`}
-        genalpha={`// Set isolation level
+        code={`// Set isolation level
 await db.transaction(
   async (trx) => {
     // Queries here see a consistent snapshot
@@ -164,29 +98,7 @@ await db.transaction(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Retry Logic</h2>
 
       <CodeBlock
-        og={`// Automatic retry on serialization failures
-await db.transaction(
-  async (trx) => {
-    const account = await trx.query(
-      cook\`from:accounts sel:* whr:id=1\`
-    );
-
-    await trx.query(
-      cook\`upd:accounts set:balance=\${account.balance - 100} whr:id=1\`
-    );
-  },
-  {
-    isolation: 'serializable',
-    retry: {
-      times: 3,
-      delay: 100,  // ms between retries
-      onRetry: (attempt, error) => {
-        console.log(\`Retry \${attempt}: \${error.message}\`);
-      }
-    }
-  }
-);`}
-        genalpha={`// Automatic retry on serialization failures
+        code={`// Automatic retry on serialization failures
 await db.transaction(
   async (trx) => {
     const account = await trx.query(

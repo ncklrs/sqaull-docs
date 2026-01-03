@@ -20,26 +20,7 @@ export default function TypeSafetyPage() {
       </p>
 
       <CodeBlock
-        og={`import { defineSchema } from 'genaql';
-
-export const schema = defineSchema({
-  users: {
-    id: 'serial',
-    name: 'text',
-    email: 'text',
-    role: { type: 'text', default: 'user' },
-    created_at: { type: 'timestamp', default: 'now()' },
-    updated_at: 'timestamp?'  // nullable
-  },
-  posts: {
-    id: 'serial',
-    title: 'text',
-    content: 'text',
-    user_id: 'integer',
-    published: { type: 'boolean', default: false }
-  }
-});`}
-        genalpha={`import { defineSchema } from 'genaql';
+        code={`import { defineSchema } from 'genaql';
 
 export const schema = defineSchema({
   users: {
@@ -119,19 +100,7 @@ export const schema = defineSchema({
       </p>
 
       <CodeBlock
-        og={`// ✓ Valid - all columns exist
-cook\`from:users sel:id,name,email\`
-
-// ✗ Error - column doesn't exist
-cook\`from:users sel:id,name,nonexistent\`
-//                         ^^^^^^^^^^^
-// Type Error: Column 'nonexistent' does not exist
-
-// ✗ Error - table doesn't exist
-cook\`from:invalid_table sel:*\`
-//       ^^^^^^^^^^^^^
-// Type Error: Table 'invalid_table' does not exist`}
-        genalpha={`// ✓ Valid - all columns exist
+        code={`// ✓ Valid - all columns exist
 cook\`main:users slay:id,name,email\`
 
 // ✗ Error - column doesn't exist
@@ -153,18 +122,7 @@ cook\`main:invalid_table slay:*\`
       </p>
 
       <CodeBlock
-        og={`const users = await db.query(
-  cook\`from:users sel:id,name,email whr:active=true\`
-);
-
-// TypeScript knows the shape:
-// users: Array<{ id: number; name: string; email: string }>
-
-users.forEach(user => {
-  console.log(user.name);    // ✓ OK
-  console.log(user.invalid); // ✗ Error: Property 'invalid' does not exist
-});`}
-        genalpha={`const users = await db.query(
+        code={`const users = await db.query(
   cook\`main:users slay:id,name,email sus:active=true\`
 );
 
@@ -185,18 +143,7 @@ users.forEach(user => {
       </p>
 
       <CodeBlock
-        og={`import { createClient } from 'genaql';
-
-const db = createClient({
-  dialect: 'postgres',
-  pool,
-  schema,
-  validate: process.env.NODE_ENV === 'development'
-});
-
-// In development, invalid queries throw helpful errors
-// In production, validation is skipped for performance`}
-        genalpha={`import { createClient } from 'genaql';
+        code={`import { createClient } from 'genaql';
 
 const db = createClient({
   dialect: 'postgres',

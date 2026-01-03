@@ -36,26 +36,7 @@ export default function DialectsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Configuring a Dialect</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'genaql';
-
-// PostgreSQL
-const pgClient = createClient({
-  dialect: 'postgres',
-  pool: pgPool
-});
-
-// MySQL
-const mysqlClient = createClient({
-  dialect: 'mysql',
-  pool: mysqlPool
-});
-
-// SQLite
-const sqliteClient = createClient({
-  dialect: 'sqlite',
-  database: './data.db'
-});`}
-        genalpha={`import { createClient } from 'genaql';
+        code={`import { createClient } from 'genaql';
 
 // PostgreSQL
 const pgClient = createClient({
@@ -84,12 +65,7 @@ const sqliteClient = createClient({
       </p>
 
       <CodeBlock
-        og={`const query = cook\`from:users sel:* whr:id=1 whr:role=admin\`;
-
-// PostgreSQL: WHERE id = $1 AND role = $2
-// MySQL:      WHERE id = ? AND role = ?
-// SQLite:     WHERE id = ? AND role = ?`}
-        genalpha={`const query = cook\`main:users slay:* sus:id=1 sus:role=admin\`;
+        code={`const query = cook\`main:users slay:* sus:id=1 sus:role=admin\`;
 
 // PostgreSQL: WHERE id = $1 AND role = $2
 // MySQL:      WHERE id = ? AND role = ?
@@ -151,21 +127,7 @@ const sqliteClient = createClient({
       </p>
 
       <CodeBlock
-        og={`// test.ts
-const testDb = createClient({
-  dialect: 'sqlite',
-  database: ':memory:'  // In-memory for speed
-});
-
-// production.ts
-const prodDb = createClient({
-  dialect: 'postgres',
-  pool: pgPool
-});
-
-// Same queries work in both!
-const query = cook\`from:users sel:* whr:active=true\`;`}
-        genalpha={`// test.ts
+        code={`// test.ts
 const testDb = createClient({
   dialect: 'sqlite',
   database: ':memory:'  // In-memory for speed

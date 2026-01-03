@@ -23,18 +23,7 @@ export default function BuilderApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">SELECT Builder</h2>
 
       <CodeBlock
-        og={`import { select } from 'genaql';
-
-const query = select('users')
-  .columns('id', 'name', 'email')
-  .where('active', '=', true)
-  .where('role', 'in', ['admin', 'moderator'])
-  .orderBy('created_at', 'desc')
-  .limit(10)
-  .offset(20);
-
-const { sql, params } = query.toParams();`}
-        genalpha={`import { select } from 'genaql';
+        code={`import { select } from 'genaql';
 
 const query = select('users')
   .columns('id', 'name', 'email')
@@ -51,29 +40,7 @@ const { sql, params } = query.toParams();`}
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Dynamic Conditions</h2>
 
       <CodeBlock
-        og={`// Build query based on filters
-function searchUsers(filters: UserFilters) {
-  let query = select('users').columns('*');
-
-  if (filters.name) {
-    query = query.where('name', 'like', \`%\${filters.name}%\`);
-  }
-
-  if (filters.role) {
-    query = query.where('role', '=', filters.role);
-  }
-
-  if (filters.minAge) {
-    query = query.where('age', '>=', filters.minAge);
-  }
-
-  if (filters.sortBy) {
-    query = query.orderBy(filters.sortBy, filters.sortDir || 'asc');
-  }
-
-  return query.limit(filters.limit || 20);
-}`}
-        genalpha={`// Build query based on filters
+        code={`// Build query based on filters
 function searchUsers(filters: UserFilters) {
   let query = select('users').columns('*');
 
@@ -101,32 +68,7 @@ function searchUsers(filters: UserFilters) {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">INSERT Builder</h2>
 
       <CodeBlock
-        og={`import { insert } from 'genaql';
-
-// Single row
-const query = insert('users')
-  .columns('name', 'email')
-  .values(['John', 'john@test.com'])
-  .returning('id');
-
-// Multiple rows
-const bulkQuery = insert('users')
-  .columns('name', 'email')
-  .values([
-    ['John', 'john@test.com'],
-    ['Jane', 'jane@test.com'],
-    ['Bob', 'bob@test.com']
-  ])
-  .returning('id');
-
-// With conflict handling (upsert)
-const upsertQuery = insert('users')
-  .columns('email', 'name')
-  .values(['john@test.com', 'John'])
-  .onConflict('email')
-  .doUpdate({ name: 'John Updated' })
-  .returning('*');`}
-        genalpha={`import { insert } from 'genaql';
+        code={`import { insert } from 'genaql';
 
 // Single row
 const query = insert('users')
@@ -157,18 +99,7 @@ const upsertQuery = insert('users')
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">UPDATE Builder</h2>
 
       <CodeBlock
-        og={`import { update } from 'genaql';
-
-const query = update('users')
-  .set({ status: 'active', verified: true })
-  .where('id', '=', 1)
-  .returning('*');
-
-// Increment/decrement
-const incrementQuery = update('posts')
-  .set({ views: raw('views + 1') })
-  .where('id', '=', 42);`}
-        genalpha={`import { update } from 'genaql';
+        code={`import { update } from 'genaql';
 
 const query = update('users')
   .set({ status: 'active', verified: true })
@@ -185,17 +116,7 @@ const incrementQuery = update('posts')
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">DELETE Builder</h2>
 
       <CodeBlock
-        og={`import { deleteFrom } from 'genaql';
-
-const query = deleteFrom('users')
-  .where('id', '=', 1)
-  .returning('id', 'email');
-
-// Delete with multiple conditions
-const bulkDelete = deleteFrom('sessions')
-  .where('expired', '=', true)
-  .orWhere('created_at', '<', '2024-01-01');`}
-        genalpha={`import { deleteFrom } from 'genaql';
+        code={`import { deleteFrom } from 'genaql';
 
 const query = deleteFrom('users')
   .where('id', '=', 1)

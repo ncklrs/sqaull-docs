@@ -16,30 +16,14 @@ export default function DefineSchemaApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { defineSchema } from 'genaql';`}
-        genalpha={`import { defineSchema } from 'genaql';`}
+        code={`import { defineSchema } from 'genaql';`}
         title="import.ts"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Usage</h2>
 
       <CodeBlock
-        og={`const schema = defineSchema({
-  users: {
-    id: 'serial',
-    name: 'text',
-    email: 'text',
-    created_at: 'timestamp'
-  },
-  posts: {
-    id: 'serial',
-    user_id: 'integer',
-    title: 'text',
-    content: 'text',
-    published: 'boolean'
-  }
-});`}
-        genalpha={`const schema = defineSchema({
+        code={`const schema = defineSchema({
   users: {
     id: 'serial',
     name: 'text',
@@ -126,30 +110,7 @@ export default function DefineSchemaApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Column Options</h2>
 
       <CodeBlock
-        og={`const schema = defineSchema({
-  users: {
-    // Simple type
-    id: 'serial',
-
-    // With options
-    name: { type: 'text', notNull: true },
-    email: { type: 'text', notNull: true, unique: true },
-    role: { type: 'text', default: 'user' },
-    bio: { type: 'text', nullable: true },  // or 'text?'
-    created_at: { type: 'timestamp', default: 'now()' },
-
-    // Foreign key
-    organization_id: {
-      type: 'integer',
-      references: 'organizations.id',
-      onDelete: 'cascade'
-    },
-
-    // Custom TypeScript type
-    metadata: { type: 'json', tsType: 'UserMetadata' }
-  }
-});`}
-        genalpha={`const schema = defineSchema({
+        code={`const schema = defineSchema({
   users: {
     // Simple type
     id: 'serial',
@@ -178,27 +139,7 @@ export default function DefineSchemaApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Relations</h2>
 
       <CodeBlock
-        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'genaql';
-
-const schema = defineSchema({
-  users: { /* ... */ },
-  profiles: { /* ... */ },
-  posts: { /* ... */ },
-  tags: { /* ... */ },
-  post_tags: { /* ... */ }
-}, {
-  relations: {
-    users: {
-      profile: hasOne('profiles', 'user_id'),
-      posts: hasMany('posts', 'user_id')
-    },
-    posts: {
-      author: belongsTo('users', 'user_id'),
-      tags: manyToMany('tags', 'post_tags', 'post_id', 'tag_id')
-    }
-  }
-});`}
-        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
+        code={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
 
 const schema = defineSchema({
   users: { /* ... */ },
@@ -224,30 +165,7 @@ const schema = defineSchema({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Schema Options</h2>
 
       <CodeBlock
-        og={`const schema = defineSchema(tables, {
-  // Relations (see above)
-  relations: { /* ... */ },
-
-  // Soft delete configuration
-  softDelete: {
-    column: 'deleted_at',
-    tables: ['users', 'posts']
-  },
-
-  // Auto timestamps
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    tables: ['users', 'posts', 'comments']
-  },
-
-  // Table name transformations
-  tableNames: {
-    style: 'snake_case',  // or 'camelCase', 'PascalCase'
-    pluralize: true
-  }
-});`}
-        genalpha={`const schema = defineSchema(tables, {
+        code={`const schema = defineSchema(tables, {
   // Relations (see above)
   relations: { /* ... */ },
 
@@ -276,18 +194,7 @@ const schema = defineSchema({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Type Inference</h2>
 
       <CodeBlock
-        og={`import { InferTable, InferInsert, InferUpdate } from 'genaql';
-
-// Infer types from schema
-type User = InferTable<typeof schema, 'users'>;
-// { id: number; name: string; email: string; created_at: Date }
-
-type NewUser = InferInsert<typeof schema, 'users'>;
-// { name: string; email: string; created_at?: Date }  (id is auto)
-
-type UserUpdate = InferUpdate<typeof schema, 'users'>;
-// { name?: string; email?: string; created_at?: Date }`}
-        genalpha={`import { InferTable, InferInsert, InferUpdate } from 'genaql';
+        code={`import { InferTable, InferInsert, InferUpdate } from 'genaql';
 
 // Infer types from schema
 type User = InferTable<typeof schema, 'users'>;

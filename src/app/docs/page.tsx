@@ -62,22 +62,19 @@ export default function DocsPage() {
       </p>
 
       <CodeBlock
-        og="from:users sel:name,email whr:age>18 ord:name lim:10"
-        genalpha="main:users slay:name,email sus:age>18 vibe:name bet:10"
+        code="main:users slay:name,email sus:age>18 vibe:name bet:10"
         output="SELECT name, email FROM users WHERE age > $1 ORDER BY name LIMIT $2"
         title="query.ts"
       />
 
-      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Two Syntaxes, Same Power</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Tailwind for SQL</h2>
 
       <p className="text-text-secondary mb-4">
-        genaql offers two syntax flavors that produce identical SQL output. Use the toggle above to switch between them:
+        genaql uses utility-style syntax that is scannable, composable, and expressive:
       </p>
 
       <CodeBlock
-        og="from:users sel:name,email whr:age>18 ord:name/desc lim:10"
-        genalpha="main:users slay:name,email sus:age>18 vibe:name/desc bet:10"
-        showBoth
+        code="main:users slay:name,email sus:age>18 vibe:name/desc bet:10"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Next Steps</h2>

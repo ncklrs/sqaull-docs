@@ -1,18 +1,12 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function UpdatePage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">UPDATE Statements</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Update existing records with precision and safety.
-        {isGenAlpha && " Time to glow up that data ✨"}
       </p>
 
       <div className="line-glow my-8" />
@@ -20,14 +14,7 @@ export default function UpdatePage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic UPDATE</h2>
 
       <CodeBlock
-        og={`// Update a single column
-cook\`upd:users set:status=active whr:id=1\`
-// → UPDATE users SET status = $1 WHERE id = $2
-
-// Update multiple columns
-cook\`upd:users set:status=active,verified=true whr:id=1\`
-// → UPDATE users SET status = $1, verified = $2 WHERE id = $3`}
-        genalpha={`// Update a single column
+        code={`// Update a single column
 cook\`glow:users rizz:status=active sus:id=1\`
 // → UPDATE users SET status = $1 WHERE id = $2
 
@@ -40,14 +27,7 @@ cook\`glow:users rizz:status=active,verified=true sus:id=1\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With RETURNING</h2>
 
       <CodeBlock
-        og={`// Return updated row
-cook\`upd:users set:status=active whr:id=1 ret:*\`
-// → UPDATE users SET status = $1 WHERE id = $2 RETURNING *
-
-// Return specific columns
-cook\`upd:users set:status=active whr:id=1 ret:id,status,updated_at\`
-// → UPDATE users SET status = $1 WHERE id = $2 RETURNING id, status, updated_at`}
-        genalpha={`// Return updated row
+        code={`// Return updated row
 cook\`glow:users rizz:status=active sus:id=1 flex:*\`
 // → UPDATE users SET status = $1 WHERE id = $2 RETURNING *
 
@@ -60,14 +40,7 @@ cook\`glow:users rizz:status=active sus:id=1 flex:id,status,updated_at\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Conditional Updates</h2>
 
       <CodeBlock
-        og={`// Update with multiple conditions
-cook\`upd:users set:role=admin whr:email=boss@company.com whr:verified=true\`
-// → UPDATE users SET role = $1 WHERE email = $2 AND verified = $3
-
-// Update with OR conditions
-cook\`upd:posts set:status=archived whr:published=false|views<10\`
-// → UPDATE posts SET status = $1 WHERE published = $2 OR views < $3`}
-        genalpha={`// Update with multiple conditions
+        code={`// Update with multiple conditions
 cook\`glow:users rizz:role=admin sus:email=boss@company.com sus:verified=true\`
 // → UPDATE users SET role = $1 WHERE email = $2 AND verified = $3
 
@@ -80,15 +53,7 @@ cook\`glow:posts rizz:status=archived sus:published=false|views<10\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Increment/Decrement</h2>
 
       <CodeBlock
-        og={`// Increment a counter
-cook\`upd:posts set:views=views+1 whr:id=42\`
-// → UPDATE posts SET views = views + 1 WHERE id = $1
-
-// Decrement with variable
-const amount = 5;
-cook\`upd:accounts set:balance=balance-\${amount} whr:user_id=1\`
-// → UPDATE accounts SET balance = balance - $1 WHERE user_id = $2`}
-        genalpha={`// Increment a counter
+        code={`// Increment a counter
 cook\`glow:posts rizz:views=views+1 sus:id=42\`
 // → UPDATE posts SET views = views + 1 WHERE id = $1
 
@@ -102,14 +67,7 @@ cook\`glow:accounts rizz:balance=balance-\${amount} sus:user_id=1\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Timestamp Updates</h2>
 
       <CodeBlock
-        og={`// Set to current timestamp
-cook\`upd:users set:last_login=now() whr:id=1\`
-// → UPDATE users SET last_login = NOW() WHERE id = $1
-
-// Set updated_at automatically (with schema config)
-cook\`upd:posts set:title=New Title whr:id=1\`
-// → UPDATE posts SET title = $1, updated_at = NOW() WHERE id = $2`}
-        genalpha={`// Set to current timestamp
+        code={`// Set to current timestamp
 cook\`glow:users rizz:last_login=now() sus:id=1\`
 // → UPDATE users SET last_login = NOW() WHERE id = $1
 
@@ -122,14 +80,7 @@ cook\`glow:posts rizz:title=New Title sus:id=1\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Bulk Updates</h2>
 
       <CodeBlock
-        og={`// Update multiple rows matching a condition
-cook\`upd:users set:newsletter=false whr:last_login<2024-01-01\`
-// → UPDATE users SET newsletter = $1 WHERE last_login < $2
-
-// Update all rows (use with caution!)
-cook\`upd:settings set:cache_version=2\`
-// → UPDATE settings SET cache_version = $1`}
-        genalpha={`// Update multiple rows matching a condition
+        code={`// Update multiple rows matching a condition
 cook\`glow:users rizz:newsletter=false sus:last_login<2024-01-01\`
 // → UPDATE users SET newsletter = $1 WHERE last_login < $2
 

@@ -1,18 +1,12 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function RelationsPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Relations</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Define relationships between tables for type-safe queries and eager loading.
-        {isGenAlpha && " Build that fam tree bestie 👨‍👩‍👧‍👦"}
       </p>
 
       <div className="line-glow my-8" />
@@ -20,50 +14,7 @@ export default function RelationsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Defining Relations</h2>
 
       <CodeBlock
-        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'genaql';
-
-const schema = defineSchema({
-  users: {
-    id: 'serial',
-    name: 'text',
-    email: 'text'
-  },
-  profiles: {
-    id: 'serial',
-    user_id: 'integer',
-    bio: 'text',
-    avatar_url: 'text'
-  },
-  posts: {
-    id: 'serial',
-    user_id: 'integer',
-    title: 'text',
-    content: 'text'
-  },
-  tags: {
-    id: 'serial',
-    name: 'text'
-  },
-  post_tags: {
-    post_id: 'integer',
-    tag_id: 'integer'
-  }
-}, {
-  relations: {
-    users: {
-      profile: hasOne('profiles', 'user_id'),
-      posts: hasMany('posts', 'user_id')
-    },
-    profiles: {
-      user: belongsTo('users', 'user_id')
-    },
-    posts: {
-      author: belongsTo('users', 'user_id'),
-      tags: manyToMany('tags', 'post_tags', 'post_id', 'tag_id')
-    }
-  }
-});`}
-        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
+        code={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -153,18 +104,7 @@ const schema = defineSchema({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Querying Relations</h2>
 
       <CodeBlock
-        og={`// Load user with their profile
-const user = await db.query(
-  cook\`from:users sel:* whr:id=1 with:profile\`
-);
-// { id: 1, name: "John", profile: { bio: "...", avatar_url: "..." } }
-
-// Load user with all their posts
-const userWithPosts = await db.query(
-  cook\`from:users sel:* whr:id=1 with:posts\`
-);
-// { id: 1, name: "John", posts: [{ title: "...", content: "..." }, ...] }`}
-        genalpha={`// Load user with their profile
+        code={`// Load user with their profile
 const user = await db.query(
   cook\`main:users slay:* sus:id=1 fam:profile\`
 );
@@ -181,18 +121,7 @@ const userWithPosts = await db.query(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Nested Relations</h2>
 
       <CodeBlock
-        og={`// Load posts with author and tags
-const posts = await db.query(
-  cook\`from:posts sel:* with:author,tags\`
-);
-// [{ title: "...", author: { name: "John" }, tags: [{ name: "tech" }] }]
-
-// Nested eager loading
-const users = await db.query(
-  cook\`from:users sel:* with:posts.tags\`
-);
-// [{ name: "John", posts: [{ title: "...", tags: [...] }] }]`}
-        genalpha={`// Load posts with author and tags
+        code={`// Load posts with author and tags
 const posts = await db.query(
   cook\`main:posts slay:* fam:author,tags\`
 );

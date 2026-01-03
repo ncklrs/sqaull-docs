@@ -1,18 +1,12 @@
-"use client";
-
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function DeletePage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">DELETE Statements</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Remove records from your database safely and precisely.
-        {isGenAlpha && " Yeet that data into the void 🕳️"}
       </p>
 
       <div className="line-glow my-8" />
@@ -20,14 +14,7 @@ export default function DeletePage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic DELETE</h2>
 
       <CodeBlock
-        og={`// Delete by ID
-cook\`del:users whr:id=1\`
-// → DELETE FROM users WHERE id = $1
-
-// Delete by condition
-cook\`del:sessions whr:expired=true\`
-// → DELETE FROM sessions WHERE expired = $1`}
-        genalpha={`// Delete by ID
+        code={`// Delete by ID
 cook\`yeet:users sus:id=1\`
 // → DELETE FROM users WHERE id = $1
 
@@ -40,14 +27,7 @@ cook\`yeet:sessions sus:expired=true\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With RETURNING</h2>
 
       <CodeBlock
-        og={`// Return deleted row
-cook\`del:users whr:id=1 ret:*\`
-// → DELETE FROM users WHERE id = $1 RETURNING *
-
-// Return specific columns
-cook\`del:users whr:id=1 ret:id,email\`
-// → DELETE FROM users WHERE id = $1 RETURNING id, email`}
-        genalpha={`// Return deleted row
+        code={`// Return deleted row
 cook\`yeet:users sus:id=1 flex:*\`
 // → DELETE FROM users WHERE id = $1 RETURNING *
 
@@ -60,18 +40,7 @@ cook\`yeet:users sus:id=1 flex:id,email\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Conditional Deletes</h2>
 
       <CodeBlock
-        og={`// Multiple conditions
-cook\`del:posts whr:status=draft whr:created_at<2024-01-01\`
-// → DELETE FROM posts WHERE status = $1 AND created_at < $2
-
-// OR conditions
-cook\`del:notifications whr:read=true|created_at<2024-01-01\`
-// → DELETE FROM notifications WHERE read = $1 OR created_at < $2
-
-// Using IN
-cook\`del:users whr:id.in(1,2,3,4,5)\`
-// → DELETE FROM users WHERE id IN ($1, $2, $3, $4, $5)`}
-        genalpha={`// Multiple conditions
+        code={`// Multiple conditions
 cook\`yeet:posts sus:status=draft sus:created_at<2024-01-01\`
 // → DELETE FROM posts WHERE status = $1 AND created_at < $2
 
@@ -92,27 +61,7 @@ cook\`yeet:users sus:id.in(1,2,3,4,5)\`
       </p>
 
       <CodeBlock
-        og={`// Configure soft deletes in schema
-const schema = defineSchema({
-  users: {
-    // ... columns
-    deleted_at: 'timestamp?'
-  }
-}, {
-  softDelete: {
-    column: 'deleted_at',
-    tables: ['users', 'posts']
-  }
-});
-
-// This becomes an UPDATE instead of DELETE
-cook\`del:users whr:id=1\`
-// → UPDATE users SET deleted_at = NOW() WHERE id = $1
-
-// Force hard delete when needed
-cook\`del:users whr:id=1 hard:true\`
-// → DELETE FROM users WHERE id = $1`}
-        genalpha={`// Configure soft deletes in schema
+        code={`// Configure soft deletes in schema
 const schema = defineSchema({
   users: {
     // ... columns
@@ -138,13 +87,7 @@ cook\`yeet:users sus:id=1 hard:true\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Cascade Deletes</h2>
 
       <CodeBlock
-        og={`// With relations defined, cascade deletes child records
-await db.delete(
-  cook\`del:users whr:id=1\`,
-  { cascade: ['posts', 'comments'] }
-);
-// Deletes user and all their posts and comments`}
-        genalpha={`// With relations defined, cascade deletes child records
+        code={`// With relations defined, cascade deletes child records
 await db.delete(
   cook\`yeet:users sus:id=1\`,
   { cascade: ['posts', 'comments'] }

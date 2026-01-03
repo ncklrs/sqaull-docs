@@ -8,30 +8,7 @@ interface CodeExample {
   label: string;
 }
 
-const ogExamples: CodeExample[] = [
-  {
-    label: "SELECT",
-    genaql: 'cook`from:users sel:name,email whr:age>18 ord:created_at/desc lim:10`',
-    sql: "SELECT name, email FROM users WHERE age > 18 ORDER BY created_at DESC LIMIT 10",
-  },
-  {
-    label: "INSERT",
-    genaql: 'cook`ins:users cols:name,email vals:john,john@test.com ret:id`',
-    sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
-  },
-  {
-    label: "UPDATE",
-    genaql: 'cook`upd:users set:status=active whr:id=1 ret:*`',
-    sql: "UPDATE users SET status = $1 WHERE id = $2 RETURNING *",
-  },
-  {
-    label: "JOIN",
-    genaql: 'cook`from:orders join:users/left on:orders.user_id=users.id sel:*`',
-    sql: "SELECT * FROM orders LEFT JOIN users ON orders.user_id = users.id",
-  },
-];
-
-const genAlphaExamples: CodeExample[] = [
+const examples: CodeExample[] = [
   {
     label: "SELECT",
     genaql: 'cook`main:users slay:name,email sus:age>18 vibe:created_at/desc bet:10`',
@@ -51,6 +28,11 @@ const genAlphaExamples: CodeExample[] = [
     label: "DELETE",
     genaql: 'cook`yeet:sessions sus:expired=true`',
     sql: "DELETE FROM sessions WHERE expired = $1",
+  },
+  {
+    label: "JOIN",
+    genaql: 'cook`main:orders link:users/left match:orders.user_id=users.id slay:*`',
+    sql: "SELECT * FROM orders LEFT JOIN users ON orders.user_id = users.id",
   },
 ];
 
@@ -149,18 +131,13 @@ function highlightSql(code: string): ReactNode[] {
   return parts;
 }
 
-interface AnimatedTerminalProps {
-  mode: "classic" | "genalpha";
-}
-
-export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
+export function AnimatedTerminal() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedGenaql, setDisplayedGenaql] = useState("");
   const [displayedSql, setDisplayedSql] = useState("");
   const [phase, setPhase] = useState<"typing" | "executing" | "result" | "pause">("typing");
   const [isExecuting, setIsExecuting] = useState(false);
 
-  const examples = mode === "classic" ? ogExamples : genAlphaExamples;
   const currentExample = examples[currentIndex];
 
   const typeText = useCallback(
@@ -185,7 +162,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
     setDisplayedSql("");
     setPhase("typing");
     setIsExecuting(false);
-  }, [currentIndex, mode]);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (phase === "typing") {
@@ -232,7 +209,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
         <div className="terminal-dot bg-[#febc2e]" />
         <div className="terminal-dot bg-[#28c840]" />
         <span className="ml-4 text-text-muted text-sm font-mono">
-          genaql {mode === "classic" ? "Classic" : "Gen Alpha"}
+          genaql
         </span>
         <span className="ml-auto badge badge-lime text-xs">
           {currentExample.label}

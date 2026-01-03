@@ -16,25 +16,14 @@ export default function SqwApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { cook } from 'genaql';`}
-        genalpha={`import { cook } from 'genaql';`}
+        code={`import { cook } from 'genaql';`}
         title="import.ts"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Usage</h2>
 
       <CodeBlock
-        og={`// Create a query
-const query = cook\`from:users sel:id,name,email whr:active=true\`;
-
-// Get SQL string
-const sql = query.toSQL();
-// → "SELECT id, name, email FROM users WHERE active = $1"
-
-// Get SQL with parameters
-const { sql, params } = query.toParams();
-// → { sql: "SELECT ... WHERE active = $1", params: [true] }`}
-        genalpha={`// Create a query
+        code={`// Create a query
 const query = cook\`main:users slay:id,name,email sus:active=true\`;
 
 // Get SQL string
@@ -50,18 +39,7 @@ const { sql, params } = query.toParams();
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Template Interpolation</h2>
 
       <CodeBlock
-        og={`// Variables are automatically parameterized
-const userId = 42;
-const status = 'active';
-
-const query = cook\`from:users sel:* whr:id=\${userId} whr:status=\${status}\`;
-// → { sql: "... WHERE id = $1 AND status = $2", params: [42, 'active'] }
-
-// Arrays for IN clauses
-const ids = [1, 2, 3];
-const query = cook\`from:users sel:* whr:id.in(\${ids})\`;
-// → { sql: "... WHERE id IN ($1, $2, $3)", params: [1, 2, 3] }`}
-        genalpha={`// Variables are automatically parameterized
+        code={`// Variables are automatically parameterized
 const userId = 42;
 const status = 'active';
 
@@ -119,18 +97,7 @@ const query = cook\`main:users slay:* sus:id.in(\${ids})\`;
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Query Composition</h2>
 
       <CodeBlock
-        og={`// Base query
-const baseQuery = cook\`from:users sel:*\`;
-
-// Extend with conditions
-const activeUsers = baseQuery.extend(cook\`whr:active=true\`);
-const adminUsers = baseQuery.extend(cook\`whr:role=admin\`);
-
-// Clone and modify
-const paginatedQuery = baseQuery
-  .clone()
-  .extend(cook\`ord:created_at/desc lim:10 off:20\`);`}
-        genalpha={`// Base query
+        code={`// Base query
 const baseQuery = cook\`main:users slay:*\`;
 
 // Extend with conditions
@@ -147,14 +114,7 @@ const paginatedQuery = baseQuery
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Raw SQL</h2>
 
       <CodeBlock
-        og={`import { cook, raw } from 'genaql';
-
-// Insert raw SQL (use with caution!)
-const query = cook\`from:users sel:\${raw('COUNT(*)')} whr:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
-// → SELECT COUNT(*) FROM users WHERE created_at > NOW() - INTERVAL '7 days'
-
-// Raw is NOT parameterized - only use for trusted values`}
-        genalpha={`import { cook, raw } from 'genaql';
+        code={`import { cook, raw } from 'genaql';
 
 // Insert raw SQL (use with caution!)
 const query = cook\`main:users slay:\${raw('COUNT(*)')} sus:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
@@ -167,12 +127,7 @@ const query = cook\`main:users slay:\${raw('COUNT(*)')} sus:created_at>\${raw("N
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With Database Client</h2>
 
       <CodeBlock
-        og={`// Execute query directly
-const users = await db.query(cook\`from:users sel:* whr:active=true\`);
-
-// Query returns typed results when schema is provided
-// users: Array<{ id: number, name: string, email: string, ... }>`}
-        genalpha={`// Execute query directly
+        code={`// Execute query directly
 const users = await db.query(cook\`main:users slay:* sus:active=true\`);
 
 // Query returns typed results when schema is provided
