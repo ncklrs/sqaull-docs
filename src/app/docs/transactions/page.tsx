@@ -24,11 +24,11 @@ export default function TransactionsPage() {
 await db.transaction(async (trx) => {
   // All queries use the transaction
   const user = await trx.query(
-    gull\`ins:users cols:name,email vals:John,john@test.com ret:id\`
+    cook\`ins:users cols:name,email vals:John,john@test.com ret:id\`
   );
 
   await trx.query(
-    gull\`ins:profiles cols:user_id,bio vals:\${user.id},New user\`
+    cook\`ins:profiles cols:user_id,bio vals:\${user.id},New user\`
   );
 
   // If any query fails, all changes are rolled back
@@ -37,11 +37,11 @@ await db.transaction(async (trx) => {
 await db.transaction(async (trx) => {
   // All queries use the transaction
   const user = await trx.query(
-    gull\`nocap:users drip:name,email fire:John,john@test.com flex:id\`
+    cook\`nocap:users drip:name,email fire:John,john@test.com flex:id\`
   );
 
   await trx.query(
-    gull\`nocap:profiles drip:user_id,bio fire:\${user.id},New user\`
+    cook\`nocap:profiles drip:user_id,bio fire:\${user.id},New user\`
   );
 
   // If any query fails, all changes are rolled back
@@ -56,8 +56,8 @@ await db.transaction(async (trx) => {
 const trx = await db.beginTransaction();
 
 try {
-  await trx.query(gull\`upd:accounts set:balance=balance-100 whr:id=1\`);
-  await trx.query(gull\`upd:accounts set:balance=balance+100 whr:id=2\`);
+  await trx.query(cook\`upd:accounts set:balance=balance-100 whr:id=1\`);
+  await trx.query(cook\`upd:accounts set:balance=balance+100 whr:id=2\`);
 
   // Commit if all successful
   await trx.commit();
@@ -70,8 +70,8 @@ try {
 const trx = await db.beginTransaction();
 
 try {
-  await trx.query(gull\`glow:accounts rizz:balance=balance-100 sus:id=1\`);
-  await trx.query(gull\`glow:accounts rizz:balance=balance+100 sus:id=2\`);
+  await trx.query(cook\`glow:accounts rizz:balance=balance-100 sus:id=1\`);
+  await trx.query(cook\`glow:accounts rizz:balance=balance+100 sus:id=2\`);
 
   // Commit if all successful
   await trx.commit();
@@ -87,11 +87,11 @@ try {
 
       <CodeBlock
         og={`await db.transaction(async (trx) => {
-  await trx.query(gull\`ins:orders cols:user_id,total vals:1,100\`);
+  await trx.query(cook\`ins:orders cols:user_id,total vals:1,100\`);
 
   // Create a savepoint
   await trx.transaction(async (nested) => {
-    await nested.query(gull\`ins:order_items cols:order_id,product_id vals:1,42\`);
+    await nested.query(cook\`ins:order_items cols:order_id,product_id vals:1,42\`);
 
     // This inner transaction can be rolled back independently
     if (outOfStock) {
@@ -106,11 +106,11 @@ try {
   // Outer transaction still commits
 });`}
         genalpha={`await db.transaction(async (trx) => {
-  await trx.query(gull\`nocap:orders drip:user_id,total fire:1,100\`);
+  await trx.query(cook\`nocap:orders drip:user_id,total fire:1,100\`);
 
   // Create a savepoint
   await trx.transaction(async (nested) => {
-    await nested.query(gull\`nocap:order_items drip:order_id,product_id fire:1,42\`);
+    await nested.query(cook\`nocap:order_items drip:order_id,product_id fire:1,42\`);
 
     // This inner transaction can be rolled back independently
     if (outOfStock) {
@@ -134,7 +134,7 @@ try {
 await db.transaction(
   async (trx) => {
     // Queries here see a consistent snapshot
-    const balance = await trx.query(gull\`from:accounts sel:balance whr:id=1\`);
+    const balance = await trx.query(cook\`from:accounts sel:balance whr:id=1\`);
   },
   { isolation: 'serializable' }
 );
@@ -148,7 +148,7 @@ await db.transaction(
 await db.transaction(
   async (trx) => {
     // Queries here see a consistent snapshot
-    const balance = await trx.query(gull\`main:accounts slay:balance sus:id=1\`);
+    const balance = await trx.query(cook\`main:accounts slay:balance sus:id=1\`);
   },
   { isolation: 'serializable' }
 );
@@ -168,11 +168,11 @@ await db.transaction(
 await db.transaction(
   async (trx) => {
     const account = await trx.query(
-      gull\`from:accounts sel:* whr:id=1\`
+      cook\`from:accounts sel:* whr:id=1\`
     );
 
     await trx.query(
-      gull\`upd:accounts set:balance=\${account.balance - 100} whr:id=1\`
+      cook\`upd:accounts set:balance=\${account.balance - 100} whr:id=1\`
     );
   },
   {
@@ -190,11 +190,11 @@ await db.transaction(
 await db.transaction(
   async (trx) => {
     const account = await trx.query(
-      gull\`main:accounts slay:* sus:id=1\`
+      cook\`main:accounts slay:* sus:id=1\`
     );
 
     await trx.query(
-      gull\`glow:accounts rizz:balance=\${account.balance - 100} sus:id=1\`
+      cook\`glow:accounts rizz:balance=\${account.balance - 100} sus:id=1\`
     );
   },
   {

@@ -55,12 +55,12 @@ const examples: Example[] = [
   },
 ];
 
-function highlightCode(code: string, type: "sqaull" | "sql"): ReactNode[] {
+function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
   const parts: ReactNode[] = [];
   let remaining = code;
   let key = 0;
 
-  if (type === "sqaull") {
+  if (type === "genaql") {
     const keywords = /(from|sel|whr|ord|lim|off|grp|hav|join|on|ins|cols|vals|upd|set|del|ret|main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex):/g;
     const modifiers = /(\/desc|\/asc|\/left|\/right|\/full)/g;
 
@@ -175,13 +175,13 @@ export function CodePlayground() {
             onClick={() => setSyntaxMode("og")}
             className={syntaxMode === "og" ? "active" : ""}
           >
-            OG Mode 🧓
+            Classic
           </button>
           <button
             onClick={() => setSyntaxMode("genalpha")}
             className={syntaxMode === "genalpha" ? "active" : ""}
           >
-            Gen Alpha 💀
+            Gen Alpha
           </button>
         </div>
       </div>
@@ -194,14 +194,14 @@ export function CodePlayground() {
             <div className="terminal-dot bg-[#ff5f57]" />
             <div className="terminal-dot bg-[#febc2e]" />
             <div className="terminal-dot bg-[#28c840]" />
-            <span className="ml-4 text-text-muted text-sm">sqaull</span>
+            <span className="ml-4 text-text-muted text-sm">genaql</span>
           </div>
           <div className="terminal-body relative">
             <pre className="code-block whitespace-pre-wrap break-all">
               <code>
                 {highlightCode(
                   syntaxMode === "og" ? currentExample.og : currentExample.genalpha,
-                  "sqaull"
+                  "genaql"
                 )}
               </code>
             </pre>

@@ -8,7 +8,7 @@ export function useTheme() {
 
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem("sqaull-theme");
+    const stored = localStorage.getItem("genaql-theme");
     if (stored) {
       setIsDark(stored === "dark");
     } else {
@@ -19,7 +19,7 @@ export function useTheme() {
   useEffect(() => {
     if (mounted) {
       document.body.classList.toggle("light-mode", !isDark);
-      localStorage.setItem("sqaull-theme", isDark ? "dark" : "light");
+      localStorage.setItem("genaql-theme", isDark ? "dark" : "light");
     }
   }, [isDark, mounted]);
 

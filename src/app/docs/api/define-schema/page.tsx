@@ -16,8 +16,8 @@ export default function DefineSchemaApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { defineSchema } from 'sqaull';`}
-        genalpha={`import { defineSchema } from 'sqaull';`}
+        og={`import { defineSchema } from 'genaql';`}
+        genalpha={`import { defineSchema } from 'genaql';`}
         title="import.ts"
       />
 
@@ -178,7 +178,7 @@ export default function DefineSchemaApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Relations</h2>
 
       <CodeBlock
-        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'sqaull';
+        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'genaql';
 
 const schema = defineSchema({
   users: { /* ... */ },
@@ -198,7 +198,7 @@ const schema = defineSchema({
     }
   }
 });`}
-        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'sqaull';
+        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
 
 const schema = defineSchema({
   users: { /* ... */ },
@@ -276,7 +276,7 @@ const schema = defineSchema({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Type Inference</h2>
 
       <CodeBlock
-        og={`import { InferTable, InferInsert, InferUpdate } from 'sqaull';
+        og={`import { InferTable, InferInsert, InferUpdate } from 'genaql';
 
 // Infer types from schema
 type User = InferTable<typeof schema, 'users'>;
@@ -287,7 +287,7 @@ type NewUser = InferInsert<typeof schema, 'users'>;
 
 type UserUpdate = InferUpdate<typeof schema, 'users'>;
 // { name?: string; email?: string; created_at?: Date }`}
-        genalpha={`import { InferTable, InferInsert, InferUpdate } from 'sqaull';
+        genalpha={`import { InferTable, InferInsert, InferUpdate } from 'genaql';
 
 // Infer types from schema
 type User = InferTable<typeof schema, 'users'>;

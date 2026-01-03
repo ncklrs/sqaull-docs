@@ -8,7 +8,7 @@ export default function DialectsPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Dialects</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Write once, deploy anywhere. sqaull supports PostgreSQL, MySQL, and SQLite with automatic syntax conversion.
+        Write once, deploy anywhere. genaql supports PostgreSQL, MySQL, and SQLite with automatic syntax conversion.
       </p>
 
       <div className="line-glow my-8" />
@@ -36,7 +36,7 @@ export default function DialectsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Configuring a Dialect</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 
 // PostgreSQL
 const pgClient = createClient({
@@ -55,7 +55,7 @@ const sqliteClient = createClient({
   dialect: 'sqlite',
   database: './data.db'
 });`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 
 // PostgreSQL
 const pgClient = createClient({
@@ -80,16 +80,16 @@ const sqliteClient = createClient({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Placeholder Syntax</h2>
 
       <p className="text-text-secondary mb-4">
-        sqaull automatically converts placeholders to match each database&apos;s syntax:
+        genaql automatically converts placeholders to match each database&apos;s syntax:
       </p>
 
       <CodeBlock
-        og={`const query = gull\`from:users sel:* whr:id=1 whr:role=admin\`;
+        og={`const query = cook\`from:users sel:* whr:id=1 whr:role=admin\`;
 
 // PostgreSQL: WHERE id = $1 AND role = $2
 // MySQL:      WHERE id = ? AND role = ?
 // SQLite:     WHERE id = ? AND role = ?`}
-        genalpha={`const query = gull\`main:users slay:* sus:id=1 sus:role=admin\`;
+        genalpha={`const query = cook\`main:users slay:* sus:id=1 sus:role=admin\`;
 
 // PostgreSQL: WHERE id = $1 AND role = $2
 // MySQL:      WHERE id = ? AND role = ?
@@ -164,7 +164,7 @@ const prodDb = createClient({
 });
 
 // Same queries work in both!
-const query = gull\`from:users sel:* whr:active=true\`;`}
+const query = cook\`from:users sel:* whr:active=true\`;`}
         genalpha={`// test.ts
 const testDb = createClient({
   dialect: 'sqlite',
@@ -178,14 +178,14 @@ const prodDb = createClient({
 });
 
 // Same queries work in both!
-const query = gull\`main:users slay:* sus:active=true\`;`}
+const query = cook\`main:users slay:* sus:active=true\`;`}
         title="testing.ts"
       />
 
       <div className="feature-card bg-neon-cyan/5 border-neon-cyan/20 mt-8">
         <h3 className="text-lg font-semibold mb-2 text-neon-cyan">Dialect Detection</h3>
         <p className="text-text-secondary text-sm">
-          sqaull will warn you at compile time if you use a feature that isn&apos;t supported
+          genaql will warn you at compile time if you use a feature that isn&apos;t supported
           by your configured dialect, preventing runtime surprises.
         </p>
       </div>

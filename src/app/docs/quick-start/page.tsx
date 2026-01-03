@@ -8,22 +8,22 @@ export default function QuickStartPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Quick Start</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Get up and running with sqaull in 5 minutes. Write your first query and connect to a database.
+        Get up and running with genaql in 5 minutes. Write your first query and connect to a database.
       </p>
 
       <div className="line-glow my-8" />
 
-      <h2 className="text-2xl font-semibold mb-4 text-text-primary">1. Import sqaull</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-text-primary">1. Import genaql</h2>
 
       <p className="text-text-secondary mb-4">
         Start by importing the template literal function:
       </p>
 
       <CodeBlock
-        og={`import { gull } from 'sqaull';
+        og={`import { cook } from 'genaql';
 
 // That's it! You're ready to write queries`}
-        genalpha={`import { gull } from 'sqaull';
+        genalpha={`import { cook } from 'genaql';
 
 // That's it! You're ready to write queries`}
         title="app.ts"
@@ -32,11 +32,11 @@ export default function QuickStartPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">2. Write Your First Query</h2>
 
       <p className="text-text-secondary mb-4">
-        Use the <code className="text-neon-lime">gull</code> template literal to write a query:
+        Use the <code className="text-neon-lime">cook</code> template literal to write a query:
       </p>
 
       <CodeBlock
-        og={`const users = gull\`from:users sel:id,name,email whr:active=true lim:10\`;
+        og={`const users = cook\`from:users sel:id,name,email whr:active=true lim:10\`;
 
 // Get the SQL string
 console.log(users.toSQL());
@@ -45,7 +45,7 @@ console.log(users.toSQL());
 // Get SQL with params for safe execution
 const { sql, params } = users.toParams();
 // → { sql: "SELECT ... WHERE active = $1 LIMIT $2", params: [true, 10] }`}
-        genalpha={`const users = gull\`main:users slay:id,name,email sus:active=true bet:10\`;
+        genalpha={`const users = cook\`main:users slay:id,name,email sus:active=true bet:10\`;
 
 // Get the SQL string
 console.log(users.toSQL());
@@ -64,7 +64,7 @@ const { sql, params } = users.toParams();
       </p>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 import { Pool } from 'pg';
 
 // Create a PostgreSQL pool
@@ -72,7 +72,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-// Create a sqaull client
+// Create a genaql client
 const db = createClient({
   dialect: 'postgres',
   pool
@@ -80,9 +80,9 @@ const db = createClient({
 
 // Now you can run queries!
 const users = await db.query(
-  gull\`from:users sel:* whr:role=admin\`
+  cook\`from:users sel:* whr:role=admin\`
 );`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 import { Pool } from 'pg';
 
 // Create a PostgreSQL pool
@@ -90,7 +90,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-// Create a sqaull client
+// Create a genaql client
 const db = createClient({
   dialect: 'postgres',
   pool
@@ -98,7 +98,7 @@ const db = createClient({
 
 // Now you can run queries!
 const users = await db.query(
-  gull\`main:users slay:* sus:role=admin\`
+  cook\`main:users slay:* sus:role=admin\`
 );`}
         title="db.ts"
       />
@@ -110,7 +110,7 @@ const users = await db.query(
       </p>
 
       <CodeBlock
-        og={`import { defineSchema, gull } from 'sqaull';
+        og={`import { defineSchema, cook } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -123,10 +123,10 @@ const schema = defineSchema({
 });
 
 // TypeScript will catch errors!
-const query = gull\`from:users sel:name,email,nonexistent\`;
+const query = cook\`from:users sel:name,email,nonexistent\`;
 //                                        ^^^^^^^^^^^
 // Error: Column 'nonexistent' does not exist on table 'users'`}
-        genalpha={`import { defineSchema, gull } from 'sqaull';
+        genalpha={`import { defineSchema, cook } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -139,7 +139,7 @@ const schema = defineSchema({
 });
 
 // TypeScript will catch errors!
-const query = gull\`main:users slay:name,email,nonexistent\`;
+const query = cook\`main:users slay:name,email,nonexistent\`;
 //                                           ^^^^^^^^^^^
 // Error: Column 'nonexistent' does not exist on table 'users'`}
         title="schema.ts"
@@ -148,7 +148,7 @@ const query = gull\`main:users slay:name,email,nonexistent\`;
       <div className="feature-card bg-neon-lime/5 border-neon-lime/20 mt-8">
         <h3 className="text-lg font-semibold mb-2 text-neon-lime">You&apos;re Ready!</h3>
         <p className="text-text-secondary text-sm">
-          You now know the basics of sqaull. Explore the{" "}
+          You now know the basics of genaql. Explore the{" "}
           <a href="/docs/syntax" className="text-neon-lime hover:underline">Syntax Reference</a>{" "}
           for all available utilities, or check out{" "}
           <a href="/docs/type-safety" className="text-neon-lime hover:underline">Type Safety</a>{" "}

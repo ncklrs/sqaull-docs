@@ -15,11 +15,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "sqaull - SQL that hits different",
+  title: "genAQL - SQL that hits different",
   description: "A Tailwind-inspired query language that compiles to SQL. Write queries the way you think.",
-  keywords: ["SQL", "query builder", "TypeScript", "database", "ORM", "Gen Alpha"],
+  keywords: ["SQL", "query builder", "TypeScript", "database", "ORM", "genAQL"],
   openGraph: {
-    title: "sqaull - SQL that hits different",
+    title: "genAQL - SQL that hits different",
     description: "A Tailwind-inspired query language that compiles to SQL",
     type: "website",
   },

@@ -1,18 +1,14 @@
 "use client";
 
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function CreateClientApiPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">createClient</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Create a database client for executing queries with connection pooling and type safety.
-        {isGenAlpha && " The one that actually talks to the database fr 🗣️"}
       </p>
 
       <div className="line-glow my-8" />
@@ -20,15 +16,15 @@ export default function CreateClientApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';`}
-        genalpha={`import { createClient } from 'sqaull';`}
+        og={`import { createClient } from 'genaql';`}
+        genalpha={`import { createClient } from 'genaql';`}
         title="import.ts"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Basic Usage</h2>
 
       <CodeBlock
-        og={`import { createClient, gull } from 'sqaull';
+        og={`import { createClient, cook } from 'genaql';
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -41,8 +37,8 @@ const db = createClient({
 });
 
 // Execute queries
-const users = await db.query(gull\`from:users sel:*\`);`}
-        genalpha={`import { createClient, gull } from 'sqaull';
+const users = await db.query(cook\`from:users sel:*\`);`}
+        genalpha={`import { createClient, cook } from 'genaql';
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -55,7 +51,7 @@ const db = createClient({
 });
 
 // Execute queries
-const users = await db.query(gull\`main:users slay:*\`);`}
+const users = await db.query(cook\`main:users slay:*\`);`}
         title="basic.ts"
       />
 
@@ -170,53 +166,53 @@ const users = await db.query(gull\`main:users slay:*\`);`}
 
       <CodeBlock
         og={`// Select multiple rows
-const users = await db.query(gull\`from:users sel:* whr:active=true\`);
+const users = await db.query(cook\`from:users sel:* whr:active=true\`);
 // users: User[]
 
 // Select single row
-const user = await db.queryOne(gull\`from:users sel:* whr:id=1\`);
+const user = await db.queryOne(cook\`from:users sel:* whr:id=1\`);
 // user: User | null
 
 // Insert and return
 const result = await db.execute(
-  gull\`ins:users cols:name,email vals:John,john@test.com ret:id\`
+  cook\`ins:users cols:name,email vals:John,john@test.com ret:id\`
 );
 // result: { id: 1 }
 
 // Update
 const updated = await db.execute(
-  gull\`upd:users set:status=active whr:id=1 ret:*\`
+  cook\`upd:users set:status=active whr:id=1 ret:*\`
 );
 // updated: { id: 1, status: 'active', ... }
 
 // Delete
 const deleted = await db.execute(
-  gull\`del:users whr:id=1 ret:id\`
+  cook\`del:users whr:id=1 ret:id\`
 );
 // deleted: { id: 1 }`}
         genalpha={`// Select multiple rows
-const users = await db.query(gull\`main:users slay:* sus:active=true\`);
+const users = await db.query(cook\`main:users slay:* sus:active=true\`);
 // users: User[]
 
 // Select single row
-const user = await db.queryOne(gull\`main:users slay:* sus:id=1\`);
+const user = await db.queryOne(cook\`main:users slay:* sus:id=1\`);
 // user: User | null
 
 // Insert and return
 const result = await db.execute(
-  gull\`nocap:users drip:name,email fire:John,john@test.com flex:id\`
+  cook\`nocap:users drip:name,email fire:John,john@test.com flex:id\`
 );
 // result: { id: 1 }
 
 // Update
 const updated = await db.execute(
-  gull\`glow:users rizz:status=active sus:id=1 flex:*\`
+  cook\`glow:users rizz:status=active sus:id=1 flex:*\`
 );
 // updated: { id: 1, status: 'active', ... }
 
 // Delete
 const deleted = await db.execute(
-  gull\`yeet:users sus:id=1 flex:id\`
+  cook\`yeet:users sus:id=1 flex:id\`
 );
 // deleted: { id: 1 }`}
         title="methods.ts"
@@ -225,7 +221,7 @@ const deleted = await db.execute(
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With Schema (Type Safe)</h2>
 
       <CodeBlock
-        og={`import { createClient, gull, defineSchema } from 'sqaull';
+        og={`import { createClient, cook, defineSchema } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -242,14 +238,14 @@ const db = createClient({
 });
 
 // TypeScript knows the return type!
-const users = await db.query(gull\`from:users sel:id,name\`);
+const users = await db.query(cook\`from:users sel:id,name\`);
 // users: Array<{ id: number; name: string }>
 
 // Errors on invalid columns
-const bad = await db.query(gull\`from:users sel:invalid\`);
+const bad = await db.query(cook\`from:users sel:invalid\`);
 //                                             ^^^^^^^
 // Type Error: Column 'invalid' does not exist`}
-        genalpha={`import { createClient, gull, defineSchema } from 'sqaull';
+        genalpha={`import { createClient, cook, defineSchema } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -266,11 +262,11 @@ const db = createClient({
 });
 
 // TypeScript knows the return type!
-const users = await db.query(gull\`main:users slay:id,name\`);
+const users = await db.query(cook\`main:users slay:id,name\`);
 // users: Array<{ id: number; name: string }>
 
 // Errors on invalid columns
-const bad = await db.query(gull\`main:users slay:invalid\`);
+const bad = await db.query(cook\`main:users slay:invalid\`);
 //                                              ^^^^^^^
 // Type Error: Column 'invalid' does not exist`}
         title="type-safe.ts"

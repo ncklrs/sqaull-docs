@@ -25,25 +25,25 @@ export default function EagerLoadingPage() {
 
       <CodeBlock
         og={`// ❌ Bad: N+1 queries
-const users = await db.query(gull\`from:users sel:*\`);  // 1 query
+const users = await db.query(cook\`from:users sel:*\`);  // 1 query
 
 for (const user of users) {
   // N additional queries!
-  user.posts = await db.query(gull\`from:posts sel:* whr:user_id=\${user.id}\`);
+  user.posts = await db.query(cook\`from:posts sel:* whr:user_id=\${user.id}\`);
 }
 
 // ✓ Good: Single query with eager loading
-const users = await db.query(gull\`from:users sel:* with:posts\`);  // 1-2 queries total`}
+const users = await db.query(cook\`from:users sel:* with:posts\`);  // 1-2 queries total`}
         genalpha={`// ❌ Bad: N+1 queries
-const users = await db.query(gull\`main:users slay:*\`);  // 1 query
+const users = await db.query(cook\`main:users slay:*\`);  // 1 query
 
 for (const user of users) {
   // N additional queries!
-  user.posts = await db.query(gull\`main:posts slay:* sus:user_id=\${user.id}\`);
+  user.posts = await db.query(cook\`main:posts slay:* sus:user_id=\${user.id}\`);
 }
 
 // ✓ Good: Single query with eager loading
-const users = await db.query(gull\`main:users slay:* fam:posts\`);  // 1-2 queries total`}
+const users = await db.query(cook\`main:users slay:* fam:posts\`);  // 1-2 queries total`}
         title="n-plus-one.ts"
       />
 
@@ -52,21 +52,21 @@ const users = await db.query(gull\`main:users slay:* fam:posts\`);  // 1-2 queri
       <CodeBlock
         og={`// Load single relation
 const users = await db.query(
-  gull\`from:users sel:* with:profile\`
+  cook\`from:users sel:* with:profile\`
 );
 
 // Load multiple relations
 const users = await db.query(
-  gull\`from:users sel:* with:profile,posts\`
+  cook\`from:users sel:* with:profile,posts\`
 );`}
         genalpha={`// Load single relation
 const users = await db.query(
-  gull\`main:users slay:* fam:profile\`
+  cook\`main:users slay:* fam:profile\`
 );
 
 // Load multiple relations
 const users = await db.query(
-  gull\`main:users slay:* fam:profile,posts\`
+  cook\`main:users slay:* fam:profile,posts\`
 );`}
         title="basic.ts"
       />
@@ -76,24 +76,24 @@ const users = await db.query(
       <CodeBlock
         og={`// Load nested relations with dot notation
 const users = await db.query(
-  gull\`from:users sel:* with:posts.comments\`
+  cook\`from:users sel:* with:posts.comments\`
 );
 // Result: users → posts → comments
 
 // Multiple levels deep
 const users = await db.query(
-  gull\`from:users sel:* with:posts.comments.author\`
+  cook\`from:users sel:* with:posts.comments.author\`
 );
 // Result: users → posts → comments → author`}
         genalpha={`// Load nested relations with dot notation
 const users = await db.query(
-  gull\`main:users slay:* fam:posts.comments\`
+  cook\`main:users slay:* fam:posts.comments\`
 );
 // Result: users → posts → comments
 
 // Multiple levels deep
 const users = await db.query(
-  gull\`main:users slay:* fam:posts.comments.author\`
+  cook\`main:users slay:* fam:posts.comments.author\`
 );
 // Result: users → posts → comments → author`}
         title="nested.ts"
@@ -104,36 +104,36 @@ const users = await db.query(
       <CodeBlock
         og={`// Filter related records
 const users = await db.query(
-  gull\`from:users sel:* with:posts(whr:published=true)\`
+  cook\`from:users sel:* with:posts(whr:published=true)\`
 );
 // Only loads published posts
 
 // Order related records
 const users = await db.query(
-  gull\`from:users sel:* with:posts(ord:created_at/desc)\`
+  cook\`from:users sel:* with:posts(ord:created_at/desc)\`
 );
 // Posts ordered by date
 
 // Limit related records
 const users = await db.query(
-  gull\`from:users sel:* with:posts(lim:5 ord:created_at/desc)\`
+  cook\`from:users sel:* with:posts(lim:5 ord:created_at/desc)\`
 );
 // Only latest 5 posts per user`}
         genalpha={`// Filter related records
 const users = await db.query(
-  gull\`main:users slay:* fam:posts(sus:published=true)\`
+  cook\`main:users slay:* fam:posts(sus:published=true)\`
 );
 // Only loads published posts
 
 // Order related records
 const users = await db.query(
-  gull\`main:users slay:* fam:posts(vibe:created_at/desc)\`
+  cook\`main:users slay:* fam:posts(vibe:created_at/desc)\`
 );
 // Posts ordered by date
 
 // Limit related records
 const users = await db.query(
-  gull\`main:users slay:* fam:posts(bet:5 vibe:created_at/desc)\`
+  cook\`main:users slay:* fam:posts(bet:5 vibe:created_at/desc)\`
 );
 // Only latest 5 posts per user`}
         title="constrained.ts"
@@ -144,12 +144,12 @@ const users = await db.query(
       <CodeBlock
         og={`// Select only needed columns from relations
 const users = await db.query(
-  gull\`from:users sel:id,name with:posts(sel:id,title)\`
+  cook\`from:users sel:id,name with:posts(sel:id,title)\`
 );
 // { id: 1, name: "John", posts: [{ id: 1, title: "Hello" }] }`}
         genalpha={`// Select only needed columns from relations
 const users = await db.query(
-  gull\`main:users slay:id,name fam:posts(slay:id,title)\`
+  cook\`main:users slay:id,name fam:posts(slay:id,title)\`
 );
 // { id: 1, name: "John", posts: [{ id: 1, title: "Hello" }] }`}
         title="select-columns.ts"
@@ -177,21 +177,21 @@ const users = await db.query(
       <CodeBlock
         og={`// Force join strategy
 const users = await db.query(
-  gull\`from:users sel:* with:profile/join\`
+  cook\`from:users sel:* with:profile/join\`
 );
 
 // Force subquery strategy
 const users = await db.query(
-  gull\`from:users sel:* with:posts/subquery\`
+  cook\`from:users sel:* with:posts/subquery\`
 );`}
         genalpha={`// Force join strategy
 const users = await db.query(
-  gull\`main:users slay:* fam:profile/join\`
+  cook\`main:users slay:* fam:profile/join\`
 );
 
 // Force subquery strategy
 const users = await db.query(
-  gull\`main:users slay:* fam:posts/subquery\`
+  cook\`main:users slay:* fam:posts/subquery\`
 );`}
         title="strategies.ts"
       />

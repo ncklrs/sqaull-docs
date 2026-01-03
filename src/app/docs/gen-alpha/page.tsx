@@ -16,7 +16,7 @@ export default function GenAlphaPage() {
 
       <p className="text-text-secondary mb-4">
         Gen Alpha mode is an alternative syntax that maps internet slang to SQL operations.
-        It produces <strong>identical SQL output</strong> to OG syntax — it&apos;s purely a
+        It produces <strong>identical SQL output</strong> to classic syntax — it&apos;s purely a
         stylistic choice. Use it for fun, to confuse your coworkers, or to assert dominance
         in code reviews.
       </p>
@@ -24,7 +24,7 @@ export default function GenAlphaPage() {
       <div className="feature-card bg-neon-pink/5 border-neon-pink/20 mb-8">
         <p className="text-text-secondary text-sm m-0">
           <strong className="text-neon-pink">Pro tip:</strong> Both syntaxes can be mixed in the same codebase.
-          Your Gen Alpha queries will compile to the exact same SQL as their OG equivalents.
+          Your Gen Alpha queries will compile to the exact same SQL as their classic equivalents.
         </p>
       </div>
 
@@ -35,7 +35,7 @@ export default function GenAlphaPage() {
           <thead>
             <tr className="border-b border-elevated">
               <th className="text-left py-3 px-4 text-text-muted font-medium">Gen Alpha</th>
-              <th className="text-left py-3 px-4 text-text-muted font-medium">OG</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">Classic</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">SQL</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Vibe Explanation</th>
             </tr>
@@ -165,7 +165,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              gull<span className="code-string">`main:users slay:name,email sus:age&gt;21 vibe:created_at/desc bet:10`</span>{"\n\n"}
+              cook<span className="code-string">`main:users slay:name,email sus:age&gt;21 vibe:created_at/desc bet:10`</span>{"\n\n"}
               <span className="code-comment">// → SELECT name, email FROM users WHERE age &gt; 21 ORDER BY created_at DESC LIMIT 10</span>
             </code>
           </pre>
@@ -182,7 +182,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              gull<span className="code-string">`nocap:users drip:name,email fire:john,john@test.com flex:id`</span>{"\n\n"}
+              cook<span className="code-string">`nocap:users drip:name,email fire:john,john@test.com flex:id`</span>{"\n\n"}
               <span className="code-comment">// → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id</span>
             </code>
           </pre>
@@ -199,7 +199,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              gull<span className="code-string">`glow:users rizz:status=active,verified=true sus:id=1 flex:*`</span>{"\n\n"}
+              cook<span className="code-string">`glow:users rizz:status=active,verified=true sus:id=1 flex:*`</span>{"\n\n"}
               <span className="code-comment">// → UPDATE users SET status = $1, verified = $2 WHERE id = $3 RETURNING *</span>
             </code>
           </pre>
@@ -216,7 +216,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              gull<span className="code-string">`yeet:sessions sus:expired=true`</span>{"\n\n"}
+              cook<span className="code-string">`yeet:sessions sus:expired=true`</span>{"\n\n"}
               <span className="code-comment">// → DELETE FROM sessions WHERE expired = $1</span>
             </code>
           </pre>
@@ -233,7 +233,7 @@ export default function GenAlphaPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              gull<span className="code-string">`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total`</span>{"\n\n"}
+              cook<span className="code-string">`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total`</span>{"\n\n"}
               <span className="code-comment">// → SELECT users.name, orders.total FROM users LEFT JOIN orders ON users.id = orders.user_id</span>
             </code>
           </pre>
@@ -251,7 +251,7 @@ export default function GenAlphaPage() {
           <thead>
             <tr className="border-b border-elevated">
               <th className="text-left py-3 px-4 text-text-muted font-medium">Gen Alpha</th>
-              <th className="text-left py-3 px-4 text-text-muted font-medium">OG</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">Classic</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Vibe</th>
             </tr>
           </thead>

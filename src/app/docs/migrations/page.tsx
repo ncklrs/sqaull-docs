@@ -8,7 +8,7 @@ export default function MigrationsPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Migrations</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Version control your database schema with sqaull&apos;s migration system.
+        Version control your database schema with genaql&apos;s migration system.
       </p>
 
       <div className="line-glow my-8" />
@@ -17,11 +17,11 @@ export default function MigrationsPage() {
 
       <CodeBlock
         og={`# Create a new migration
-npx sqaull migrate:create add_users_table
+npx genaql migrate:create add_users_table
 
 # Creates: migrations/20240115120000_add_users_table.ts`}
         genalpha={`# Create a new migration
-npx sqaull migrate:create add_users_table
+npx genaql migrate:create add_users_table
 
 # Creates: migrations/20240115120000_add_users_table.ts`}
         title="terminal"
@@ -30,7 +30,7 @@ npx sqaull migrate:create add_users_table
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Migration Structure</h2>
 
       <CodeBlock
-        og={`import { Migration } from 'sqaull';
+        og={`import { Migration } from 'genaql';
 
 export const migration: Migration = {
   up: async (db) => {
@@ -52,7 +52,7 @@ export const migration: Migration = {
     await db.schema.dropTable('users');
   }
 };`}
-        genalpha={`import { Migration } from 'sqaull';
+        genalpha={`import { Migration } from 'genaql';
 
 export const migration: Migration = {
   up: async (db) => {
@@ -81,33 +81,33 @@ export const migration: Migration = {
 
       <CodeBlock
         og={`# Run all pending migrations
-npx sqaull migrate
+npx genaql migrate
 
 # Run migrations up to a specific version
-npx sqaull migrate --to 20240115120000
+npx genaql migrate --to 20240115120000
 
 # Rollback last migration
-npx sqaull migrate:rollback
+npx genaql migrate:rollback
 
 # Rollback all migrations
-npx sqaull migrate:rollback --all
+npx genaql migrate:rollback --all
 
 # Check migration status
-npx sqaull migrate:status`}
+npx genaql migrate:status`}
         genalpha={`# Run all pending migrations
-npx sqaull migrate
+npx genaql migrate
 
 # Run migrations up to a specific version
-npx sqaull migrate --to 20240115120000
+npx genaql migrate --to 20240115120000
 
 # Rollback last migration
-npx sqaull migrate:rollback
+npx genaql migrate:rollback
 
 # Rollback all migrations
-npx sqaull migrate:rollback --all
+npx genaql migrate:rollback --all
 
 # Check migration status
-npx sqaull migrate:status`}
+npx genaql migrate:status`}
         title="terminal"
       />
 

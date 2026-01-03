@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, ReactNode } from "react";
 
 interface CodeExample {
-  sqaull: string;
+  genaql: string;
   sql: string;
   label: string;
 }
@@ -11,22 +11,22 @@ interface CodeExample {
 const ogExamples: CodeExample[] = [
   {
     label: "SELECT",
-    sqaull: 'gull`from:users sel:name,email whr:age>18 ord:created_at/desc lim:10`',
+    genaql: 'cook`from:users sel:name,email whr:age>18 ord:created_at/desc lim:10`',
     sql: "SELECT name, email FROM users WHERE age > 18 ORDER BY created_at DESC LIMIT 10",
   },
   {
     label: "INSERT",
-    sqaull: 'gull`ins:users cols:name,email vals:john,john@test.com ret:id`',
+    genaql: 'cook`ins:users cols:name,email vals:john,john@test.com ret:id`',
     sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
   },
   {
     label: "UPDATE",
-    sqaull: 'gull`upd:users set:status=active whr:id=1 ret:*`',
+    genaql: 'cook`upd:users set:status=active whr:id=1 ret:*`',
     sql: "UPDATE users SET status = $1 WHERE id = $2 RETURNING *",
   },
   {
     label: "JOIN",
-    sqaull: 'gull`from:orders join:users/left on:orders.user_id=users.id sel:*`',
+    genaql: 'cook`from:orders join:users/left on:orders.user_id=users.id sel:*`',
     sql: "SELECT * FROM orders LEFT JOIN users ON orders.user_id = users.id",
   },
 ];
@@ -34,34 +34,34 @@ const ogExamples: CodeExample[] = [
 const genAlphaExamples: CodeExample[] = [
   {
     label: "SELECT",
-    sqaull: 'gull`main:users slay:name,email sus:age>18 vibe:created_at/desc bet:10`',
+    genaql: 'cook`main:users slay:name,email sus:age>18 vibe:created_at/desc bet:10`',
     sql: "SELECT name, email FROM users WHERE age > 18 ORDER BY created_at DESC LIMIT 10",
   },
   {
     label: "INSERT",
-    sqaull: 'gull`nocap:users drip:name,email fire:john,john@test.com flex:id`',
+    genaql: 'cook`nocap:users drip:name,email fire:john,john@test.com flex:id`',
     sql: "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
   },
   {
     label: "UPDATE",
-    sqaull: 'gull`glow:users rizz:status=active sus:id=1 flex:*`',
+    genaql: 'cook`glow:users rizz:status=active sus:id=1 flex:*`',
     sql: "UPDATE users SET status = $1 WHERE id = $2 RETURNING *",
   },
   {
     label: "DELETE",
-    sqaull: 'gull`yeet:sessions sus:expired=true`',
+    genaql: 'cook`yeet:sessions sus:expired=true`',
     sql: "DELETE FROM sessions WHERE expired = $1",
   },
 ];
 
 // Safe syntax highlighter using React elements
-function highlightSqaull(code: string): ReactNode[] {
+function highlightGenaql(code: string): ReactNode[] {
   const parts: ReactNode[] = [];
   let remaining = code;
   let keyIndex = 0;
 
   const patterns = [
-    { regex: /^(gull)(`)/,  classes: ["code-function", ""] },
+    { regex: /^(cook)(`)/,  classes: ["code-function", ""] },
     { regex: /^(from|sel|whr|ord|lim|off|grp|hav|join|on|ins|cols|vals|upd|set|del|ret)(:)/, classes: ["code-keyword", ""] },
     { regex: /^(main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex)(:)/, classes: ["code-keyword", ""] },
     { regex: /^(\d+)/, classes: ["code-number"] },
@@ -155,7 +155,7 @@ interface AnimatedTerminalProps {
 
 export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayedSqaull, setDisplayedSqaull] = useState("");
+  const [displayedGenaql, setDisplayedGenaql] = useState("");
   const [displayedSql, setDisplayedSql] = useState("");
   const [phase, setPhase] = useState<"typing" | "executing" | "result" | "pause">("typing");
   const [isExecuting, setIsExecuting] = useState(false);
@@ -181,7 +181,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
   );
 
   useEffect(() => {
-    setDisplayedSqaull("");
+    setDisplayedGenaql("");
     setDisplayedSql("");
     setPhase("typing");
     setIsExecuting(false);
@@ -189,12 +189,12 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
 
   useEffect(() => {
     if (phase === "typing") {
-      const cleanup = typeText(currentExample.sqaull, setDisplayedSqaull, () => {
+      const cleanup = typeText(currentExample.genaql, setDisplayedGenaql, () => {
         setPhase("executing");
       });
       return cleanup;
     }
-  }, [phase, currentExample.sqaull, typeText]);
+  }, [phase, currentExample.genaql, typeText]);
 
   useEffect(() => {
     if (phase === "executing") {
@@ -232,7 +232,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
         <div className="terminal-dot bg-[#febc2e]" />
         <div className="terminal-dot bg-[#28c840]" />
         <span className="ml-4 text-text-muted text-sm font-mono">
-          sqaull {mode === "og" ? "OG" : "Gen Alpha"} Mode
+          genaql {mode === "og" ? "Classic" : "Gen Alpha"}
         </span>
         <span className="ml-auto badge badge-lime text-xs">
           {currentExample.label}
@@ -242,7 +242,7 @@ export function AnimatedTerminal({ mode }: AnimatedTerminalProps) {
         {/* Input line */}
         <div className="mb-4">
           <span className="code-function">{">"}</span>{" "}
-          {highlightSqaull(displayedSqaull)}
+          {highlightGenaql(displayedGenaql)}
           {phase === "typing" && <span className="typing-cursor" />}
         </div>
 

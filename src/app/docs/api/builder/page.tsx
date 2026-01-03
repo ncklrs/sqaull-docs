@@ -1,18 +1,14 @@
 "use client";
 
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function BuilderApiPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Fluent Builder</h1>
 
       <p className="text-xl text-text-secondary mb-8">
         Build queries programmatically with the fluent API for dynamic query construction.
-        {isGenAlpha && " Chain those methods like a boss 💪"}
       </p>
 
       <div className="line-glow my-8" />
@@ -21,13 +17,13 @@ export default function BuilderApiPage() {
 
       <p className="text-text-secondary mb-4">
         Use the fluent builder when you need to construct queries dynamically based on runtime conditions.
-        For static queries, prefer the <code className="text-neon-lime">gull</code> template literal.
+        For static queries, prefer the <code className="text-neon-lime">cook</code> template literal.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">SELECT Builder</h2>
 
       <CodeBlock
-        og={`import { select } from 'sqaull';
+        og={`import { select } from 'genaql';
 
 const query = select('users')
   .columns('id', 'name', 'email')
@@ -38,7 +34,7 @@ const query = select('users')
   .offset(20);
 
 const { sql, params } = query.toParams();`}
-        genalpha={`import { select } from 'sqaull';
+        genalpha={`import { select } from 'genaql';
 
 const query = select('users')
   .columns('id', 'name', 'email')
@@ -105,7 +101,7 @@ function searchUsers(filters: UserFilters) {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">INSERT Builder</h2>
 
       <CodeBlock
-        og={`import { insert } from 'sqaull';
+        og={`import { insert } from 'genaql';
 
 // Single row
 const query = insert('users')
@@ -130,7 +126,7 @@ const upsertQuery = insert('users')
   .onConflict('email')
   .doUpdate({ name: 'John Updated' })
   .returning('*');`}
-        genalpha={`import { insert } from 'sqaull';
+        genalpha={`import { insert } from 'genaql';
 
 // Single row
 const query = insert('users')
@@ -161,7 +157,7 @@ const upsertQuery = insert('users')
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">UPDATE Builder</h2>
 
       <CodeBlock
-        og={`import { update } from 'sqaull';
+        og={`import { update } from 'genaql';
 
 const query = update('users')
   .set({ status: 'active', verified: true })
@@ -172,7 +168,7 @@ const query = update('users')
 const incrementQuery = update('posts')
   .set({ views: raw('views + 1') })
   .where('id', '=', 42);`}
-        genalpha={`import { update } from 'sqaull';
+        genalpha={`import { update } from 'genaql';
 
 const query = update('users')
   .set({ status: 'active', verified: true })
@@ -189,7 +185,7 @@ const incrementQuery = update('posts')
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">DELETE Builder</h2>
 
       <CodeBlock
-        og={`import { deleteFrom } from 'sqaull';
+        og={`import { deleteFrom } from 'genaql';
 
 const query = deleteFrom('users')
   .where('id', '=', 1)
@@ -199,7 +195,7 @@ const query = deleteFrom('users')
 const bulkDelete = deleteFrom('sessions')
   .where('expired', '=', true)
   .orWhere('created_at', '<', '2024-01-01');`}
-        genalpha={`import { deleteFrom } from 'sqaull';
+        genalpha={`import { deleteFrom } from 'genaql';
 
 const query = deleteFrom('users')
   .where('id', '=', 1)

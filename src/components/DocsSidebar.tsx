@@ -45,7 +45,7 @@ const navigation = [
   {
     title: "API Reference",
     items: [
-      { title: "gull Template", href: "/docs/api/gull" },
+      { title: "cook Template", href: "/docs/api/cook" },
       { title: "Fluent Builder", href: "/docs/api/builder" },
       { title: "defineSchema", href: "/docs/api/define-schema" },
       { title: "createClient", href: "/docs/api/create-client" },

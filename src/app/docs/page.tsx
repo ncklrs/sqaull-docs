@@ -12,23 +12,23 @@ export default function DocsPage() {
       </div>
 
       <h1 className="text-4xl font-bold mb-4 text-text-primary">
-        Introduction to sqaull
+        Introduction to genaql
       </h1>
 
       <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-        sqaull is a Tailwind-inspired query language that compiles to SQL. Write composable,
+        genaql is a Tailwind-inspired query language that compiles to SQL. Write composable,
         type-safe queries using utility-style syntax that feels familiar to modern frontend developers.
       </p>
 
       <div className="line-glow my-8" />
 
-      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Why sqaull?</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Why genaql?</h2>
 
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <div className="feature-card">
           <h3 className="text-lg font-semibold mb-2 text-neon-lime">Composable Syntax</h3>
           <p className="text-text-secondary text-sm">
-            Like Tailwind for CSS, sqaull uses utility patterns that are scannable,
+            Like Tailwind for CSS, genaql uses utility patterns that are scannable,
             composable, and expressive. Colons separate utilities, slashes add modifiers.
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function DocsPage() {
         <div className="feature-card">
           <h3 className="text-lg font-semibold mb-2 text-neon-cyan">Multi-Dialect</h3>
           <p className="text-text-secondary text-sm">
-            Write once, deploy anywhere. sqaull supports PostgreSQL, MySQL, and SQLite
+            Write once, deploy anywhere. genaql supports PostgreSQL, MySQL, and SQLite
             with automatic placeholder syntax conversion.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function DocsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Quick Example</h2>
 
       <p className="text-text-secondary mb-4">
-        Here&apos;s how a typical query looks in sqaull:
+        Here&apos;s how a typical query looks in genaql:
       </p>
 
       <CodeBlock
@@ -71,7 +71,7 @@ export default function DocsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Two Syntaxes, Same Power</h2>
 
       <p className="text-text-secondary mb-4">
-        sqaull offers two syntax flavors that produce identical SQL output. Use the toggle above to switch between them:
+        genaql offers two syntax flavors that produce identical SQL output. Use the toggle above to switch between them:
       </p>
 
       <CodeBlock
@@ -88,7 +88,7 @@ export default function DocsPage() {
             Installation →
           </h3>
           <p className="text-text-secondary text-sm">
-            Get sqaull installed in your project in under a minute.
+            Get genaql installed in your project in under a minute.
           </p>
         </Link>
         <Link href="/docs/quick-start" className="feature-card group">
@@ -104,7 +104,7 @@ export default function DocsPage() {
             Syntax Reference →
           </h3>
           <p className="text-text-secondary text-sm">
-            Complete reference for all sqaull utilities and modifiers.
+            Complete reference for all genaql utilities and modifiers.
           </p>
         </Link>
       </div>

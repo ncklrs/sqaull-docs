@@ -8,7 +8,7 @@ import { CodePlayground } from "@/components/CodePlayground";
 import { Features } from "@/components/Features";
 
 export default function Home() {
-  const [terminalMode, setTerminalMode] = useState<"og" | "genalpha">("genalpha");
+  const [terminalMode, setTerminalMode] = useState<"classic" | "genalpha">("genalpha");
 
   return (
     <div className="gradient-mesh min-h-screen">
@@ -28,8 +28,8 @@ export default function Home() {
 
             {/* Main heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight animate-[slide-up_0.5s_ease-out]">
-              SQL that hits{" "}
-              <span className="gradient-text glow-lime">different</span>
+              SQL for{" "}
+              <span className="gradient-text glow-lime">Gen Alpha</span>
             </h1>
 
             {/* Subheading */}
@@ -47,7 +47,7 @@ export default function Home() {
                 Get Started
               </Link>
               <a
-                href="https://github.com/sqaull/sqaull"
+                href="https://github.com/genaql/genaql"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary flex items-center justify-center gap-2"
@@ -63,10 +63,10 @@ export default function Home() {
             <div className="flex justify-center mb-8">
               <div className="syntax-toggle">
                 <button
-                  onClick={() => setTerminalMode("og")}
-                  className={terminalMode === "og" ? "active" : ""}
+                  onClick={() => setTerminalMode("classic")}
+                  className={terminalMode === "classic" ? "active" : ""}
                 >
-                  OG Mode 🧓
+                  Classic
                 </button>
                 <button
                   onClick={() => setTerminalMode("genalpha")}
@@ -93,7 +93,7 @@ export default function Home() {
               Before & After
             </h2>
             <p className="text-text-secondary text-lg">
-              See the transformation from verbose SQL to clean sqaull syntax
+              See the transformation from verbose SQL to clean genAQL syntax
             </p>
           </div>
 
@@ -134,7 +134,7 @@ LIMIT 10`}
                 <div className="terminal-dot bg-[#ff5f57]" />
                 <div className="terminal-dot bg-[#febc2e]" />
                 <div className="terminal-dot bg-[#28c840]" />
-                <span className="ml-4 text-text-muted text-sm">sqaull</span>
+                <span className="ml-4 text-text-muted text-sm">genAQL</span>
                 <span className="ml-auto badge badge-lime text-xs">One-liner</span>
               </div>
               <div className="terminal-body flex items-center">
@@ -162,18 +162,18 @@ LIMIT 10`}
               Two Flavors, Same SQL
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Choose your vibe: OG syntax for the SQL purists, or Gen Alpha slang for maximum chaos energy
+              Choose your vibe: classic syntax for SQL purists, or Gen Alpha slang for maximum chaos energy
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* OG Syntax */}
+            {/* Classic Syntax */}
             <div className="feature-card">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🧓</span>
+                <span className="text-3xl">📋</span>
                 <div>
-                  <h3 className="text-xl font-semibold">OG Syntax</h3>
-                  <p className="text-text-muted text-sm">For the SQL purists</p>
+                  <h3 className="text-xl font-semibold">Classic Syntax</h3>
+                  <p className="text-text-muted text-sm">For SQL purists</p>
                 </div>
               </div>
               <div className="space-y-3 font-mono text-sm">
@@ -278,7 +278,7 @@ LIMIT 10`}
               Everything You Need
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              From simple queries to complex migrations, sqaull has you covered
+              From simple queries to complex migrations, genAQL has you covered
             </p>
           </div>
 
@@ -293,7 +293,7 @@ LIMIT 10`}
             Ready to Get Started?
           </h2>
           <p className="text-text-secondary text-lg mb-8">
-            Install sqaull and start writing SQL that hits different
+            Install genAQL and start writing SQL for Gen Alpha
           </p>
 
           {/* Install command */}
@@ -305,7 +305,7 @@ LIMIT 10`}
               <span className="ml-4 text-text-muted text-sm">terminal</span>
             </div>
             <div className="terminal-body">
-              <code className="text-neon-lime">npm install sqaull</code>
+              <code className="text-neon-lime">npm install genaql</code>
             </div>
           </div>
 
@@ -325,9 +325,9 @@ LIMIT 10`}
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold gradient-text">sqaull</span>
+              <span className="text-xl font-bold gradient-text">genAQL</span>
               <span className="text-text-muted text-sm">
-                SQL that hits different
+                SQL for Gen Alpha
               </span>
             </div>
             <div className="flex items-center gap-6 text-text-secondary text-sm">
@@ -335,7 +335,7 @@ LIMIT 10`}
                 Docs
               </Link>
               <a
-                href="https://github.com/sqaull/sqaull"
+                href="https://github.com/genaql/genaql"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-text-primary transition-colors"

@@ -11,13 +11,13 @@ export function SyntaxToggle() {
         onClick={() => setMode("og")}
         className={mode === "og" ? "active" : ""}
       >
-        OG 🧓
+        Classic
       </button>
       <button
         onClick={() => setMode("genalpha")}
         className={mode === "genalpha" ? "active" : ""}
       >
-        Gen Alpha 💀
+        Gen Alpha
       </button>
     </div>
   );

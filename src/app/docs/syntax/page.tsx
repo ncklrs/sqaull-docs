@@ -11,8 +11,8 @@ export default function SyntaxPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Syntax Reference</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Complete reference for all sqaull utilities, modifiers, and operators.
-        {isGenAlpha && " (Gen Alpha mode - no cap fr fr 💀)"}
+        Complete reference for all genaql utilities, modifiers, and operators.
+        {isGenAlpha && " (Gen Alpha mode)"}
       </p>
 
       <div className="line-glow my-8" />
@@ -27,7 +27,7 @@ export default function SyntaxPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-elevated">
-              <th className="text-left py-3 px-4 text-text-muted font-medium">OG Syntax</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">Classic Syntax</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Gen Alpha</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">SQL Equivalent</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Example</th>
@@ -92,7 +92,7 @@ export default function SyntaxPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-elevated">
-              <th className="text-left py-3 px-4 text-text-muted font-medium">OG Syntax</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">Classic Syntax</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Gen Alpha</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">SQL Equivalent</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Example</th>

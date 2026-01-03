@@ -21,18 +21,18 @@ export default function UpdatePage() {
 
       <CodeBlock
         og={`// Update a single column
-gull\`upd:users set:status=active whr:id=1\`
+cook\`upd:users set:status=active whr:id=1\`
 // → UPDATE users SET status = $1 WHERE id = $2
 
 // Update multiple columns
-gull\`upd:users set:status=active,verified=true whr:id=1\`
+cook\`upd:users set:status=active,verified=true whr:id=1\`
 // → UPDATE users SET status = $1, verified = $2 WHERE id = $3`}
         genalpha={`// Update a single column
-gull\`glow:users rizz:status=active sus:id=1\`
+cook\`glow:users rizz:status=active sus:id=1\`
 // → UPDATE users SET status = $1 WHERE id = $2
 
 // Update multiple columns
-gull\`glow:users rizz:status=active,verified=true sus:id=1\`
+cook\`glow:users rizz:status=active,verified=true sus:id=1\`
 // → UPDATE users SET status = $1, verified = $2 WHERE id = $3`}
         title="basic.ts"
       />
@@ -41,18 +41,18 @@ gull\`glow:users rizz:status=active,verified=true sus:id=1\`
 
       <CodeBlock
         og={`// Return updated row
-gull\`upd:users set:status=active whr:id=1 ret:*\`
+cook\`upd:users set:status=active whr:id=1 ret:*\`
 // → UPDATE users SET status = $1 WHERE id = $2 RETURNING *
 
 // Return specific columns
-gull\`upd:users set:status=active whr:id=1 ret:id,status,updated_at\`
+cook\`upd:users set:status=active whr:id=1 ret:id,status,updated_at\`
 // → UPDATE users SET status = $1 WHERE id = $2 RETURNING id, status, updated_at`}
         genalpha={`// Return updated row
-gull\`glow:users rizz:status=active sus:id=1 flex:*\`
+cook\`glow:users rizz:status=active sus:id=1 flex:*\`
 // → UPDATE users SET status = $1 WHERE id = $2 RETURNING *
 
 // Return specific columns
-gull\`glow:users rizz:status=active sus:id=1 flex:id,status,updated_at\`
+cook\`glow:users rizz:status=active sus:id=1 flex:id,status,updated_at\`
 // → UPDATE users SET status = $1 WHERE id = $2 RETURNING id, status, updated_at`}
         title="returning.ts"
       />
@@ -61,18 +61,18 @@ gull\`glow:users rizz:status=active sus:id=1 flex:id,status,updated_at\`
 
       <CodeBlock
         og={`// Update with multiple conditions
-gull\`upd:users set:role=admin whr:email=boss@company.com whr:verified=true\`
+cook\`upd:users set:role=admin whr:email=boss@company.com whr:verified=true\`
 // → UPDATE users SET role = $1 WHERE email = $2 AND verified = $3
 
 // Update with OR conditions
-gull\`upd:posts set:status=archived whr:published=false|views<10\`
+cook\`upd:posts set:status=archived whr:published=false|views<10\`
 // → UPDATE posts SET status = $1 WHERE published = $2 OR views < $3`}
         genalpha={`// Update with multiple conditions
-gull\`glow:users rizz:role=admin sus:email=boss@company.com sus:verified=true\`
+cook\`glow:users rizz:role=admin sus:email=boss@company.com sus:verified=true\`
 // → UPDATE users SET role = $1 WHERE email = $2 AND verified = $3
 
 // Update with OR conditions
-gull\`glow:posts rizz:status=archived sus:published=false|views<10\`
+cook\`glow:posts rizz:status=archived sus:published=false|views<10\`
 // → UPDATE posts SET status = $1 WHERE published = $2 OR views < $3`}
         title="conditional.ts"
       />
@@ -81,20 +81,20 @@ gull\`glow:posts rizz:status=archived sus:published=false|views<10\`
 
       <CodeBlock
         og={`// Increment a counter
-gull\`upd:posts set:views=views+1 whr:id=42\`
+cook\`upd:posts set:views=views+1 whr:id=42\`
 // → UPDATE posts SET views = views + 1 WHERE id = $1
 
 // Decrement with variable
 const amount = 5;
-gull\`upd:accounts set:balance=balance-\${amount} whr:user_id=1\`
+cook\`upd:accounts set:balance=balance-\${amount} whr:user_id=1\`
 // → UPDATE accounts SET balance = balance - $1 WHERE user_id = $2`}
         genalpha={`// Increment a counter
-gull\`glow:posts rizz:views=views+1 sus:id=42\`
+cook\`glow:posts rizz:views=views+1 sus:id=42\`
 // → UPDATE posts SET views = views + 1 WHERE id = $1
 
 // Decrement with variable
 const amount = 5;
-gull\`glow:accounts rizz:balance=balance-\${amount} sus:user_id=1\`
+cook\`glow:accounts rizz:balance=balance-\${amount} sus:user_id=1\`
 // → UPDATE accounts SET balance = balance - $1 WHERE user_id = $2`}
         title="increment.ts"
       />
@@ -103,18 +103,18 @@ gull\`glow:accounts rizz:balance=balance-\${amount} sus:user_id=1\`
 
       <CodeBlock
         og={`// Set to current timestamp
-gull\`upd:users set:last_login=now() whr:id=1\`
+cook\`upd:users set:last_login=now() whr:id=1\`
 // → UPDATE users SET last_login = NOW() WHERE id = $1
 
 // Set updated_at automatically (with schema config)
-gull\`upd:posts set:title=New Title whr:id=1\`
+cook\`upd:posts set:title=New Title whr:id=1\`
 // → UPDATE posts SET title = $1, updated_at = NOW() WHERE id = $2`}
         genalpha={`// Set to current timestamp
-gull\`glow:users rizz:last_login=now() sus:id=1\`
+cook\`glow:users rizz:last_login=now() sus:id=1\`
 // → UPDATE users SET last_login = NOW() WHERE id = $1
 
 // Set updated_at automatically (with schema config)
-gull\`glow:posts rizz:title=New Title sus:id=1\`
+cook\`glow:posts rizz:title=New Title sus:id=1\`
 // → UPDATE posts SET title = $1, updated_at = NOW() WHERE id = $2`}
         title="timestamps.ts"
       />
@@ -123,18 +123,18 @@ gull\`glow:posts rizz:title=New Title sus:id=1\`
 
       <CodeBlock
         og={`// Update multiple rows matching a condition
-gull\`upd:users set:newsletter=false whr:last_login<2024-01-01\`
+cook\`upd:users set:newsletter=false whr:last_login<2024-01-01\`
 // → UPDATE users SET newsletter = $1 WHERE last_login < $2
 
 // Update all rows (use with caution!)
-gull\`upd:settings set:cache_version=2\`
+cook\`upd:settings set:cache_version=2\`
 // → UPDATE settings SET cache_version = $1`}
         genalpha={`// Update multiple rows matching a condition
-gull\`glow:users rizz:newsletter=false sus:last_login<2024-01-01\`
+cook\`glow:users rizz:newsletter=false sus:last_login<2024-01-01\`
 // → UPDATE users SET newsletter = $1 WHERE last_login < $2
 
 // Update all rows (use with caution!)
-gull\`glow:settings rizz:cache_version=2\`
+cook\`glow:settings rizz:cache_version=2\`
 // → UPDATE settings SET cache_version = $1`}
         title="bulk.ts"
       />
@@ -143,7 +143,7 @@ gull\`glow:settings rizz:cache_version=2\`
         <h3 className="text-lg font-semibold mb-2 text-neon-orange">Warning</h3>
         <p className="text-text-secondary text-sm">
           Always include a WHERE clause in UPDATE statements unless you intentionally want to
-          update all rows. sqaull can be configured to require WHERE clauses for safety.
+          update all rows. genaql can be configured to require WHERE clauses for safety.
         </p>
       </div>
     </article>

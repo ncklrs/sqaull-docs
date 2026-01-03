@@ -11,12 +11,12 @@ interface CodeBlockProps {
   showBoth?: boolean;
 }
 
-function highlightCode(code: string, type: "sqaull" | "sql"): ReactNode[] {
+function highlightCode(code: string, type: "genaql" | "sql"): ReactNode[] {
   const parts: ReactNode[] = [];
   let remaining = code;
   let key = 0;
 
-  if (type === "sqaull") {
+  if (type === "genaql") {
     const keywords = /(from|sel|whr|ord|lim|off|grp|hav|join|on|ins|cols|vals|upd|set|del|ret|main|slay|sus|vibe|bet|skip|squad|tea|link|match|nocap|drip|fire|glow|rizz|yeet|flex|fam|with):/g;
     const modifiers = /(\/desc|\/asc|\/left|\/right|\/full)/g;
     const functions = /(sum|cnt|avg|min|max):/g;
@@ -101,11 +101,11 @@ export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockPr
             <div className="terminal-dot bg-[#ff5f57]" />
             <div className="terminal-dot bg-[#febc2e]" />
             <div className="terminal-dot bg-[#28c840]" />
-            <span className="ml-4 text-text-muted text-sm">OG Syntax</span>
+            <span className="ml-4 text-text-muted text-sm">Classic Syntax</span>
           </div>
           <div className="terminal-body">
             <pre className="text-sm whitespace-pre-wrap break-all">
-              <code>{highlightCode(og, "sqaull")}</code>
+              <code>{highlightCode(og, "genaql")}</code>
             </pre>
           </div>
         </div>
@@ -118,7 +118,7 @@ export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockPr
           </div>
           <div className="terminal-body">
             <pre className="text-sm whitespace-pre-wrap break-all">
-              <code>{highlightCode(genalpha, "sqaull")}</code>
+              <code>{highlightCode(genalpha, "genaql")}</code>
             </pre>
           </div>
         </div>
@@ -132,12 +132,12 @@ export function CodeBlock({ og, genalpha, output, title, showBoth }: CodeBlockPr
         <div className="terminal-dot bg-[#ff5f57]" />
         <div className="terminal-dot bg-[#febc2e]" />
         <div className="terminal-dot bg-[#28c840]" />
-        <span className="ml-4 text-text-muted text-sm">{title || (isGenAlpha ? "Gen Alpha" : "OG")}</span>
+        <span className="ml-4 text-text-muted text-sm">{title || (isGenAlpha ? "Gen Alpha" : "Classic")}</span>
         <span className="ml-auto badge badge-lime text-xs">{mode.toUpperCase()}</span>
       </div>
       <div className="terminal-body">
         <pre className="text-sm whitespace-pre-wrap break-all">
-          <code>{highlightCode(code, "sqaull")}</code>
+          <code>{highlightCode(code, "genaql")}</code>
         </pre>
         {output && (
           <div className="mt-4 pt-4 border-t border-elevated">

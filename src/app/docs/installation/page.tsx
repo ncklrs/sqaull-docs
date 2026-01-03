@@ -4,7 +4,7 @@ export default function InstallationPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Installation</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Get sqaull installed in your project in under a minute.
+        Get genaql installed in your project in under a minute.
       </p>
 
       <div className="line-glow my-8" />
@@ -16,10 +16,10 @@ export default function InstallationPage() {
         <li>TypeScript 5.0+ (recommended for type safety)</li>
       </ul>
 
-      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Install sqaull</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-text-primary">Install genaql</h2>
 
       <p className="text-text-secondary mb-4">
-        Install sqaull using your preferred package manager:
+        Install genaql using your preferred package manager:
       </p>
 
       <div className="space-y-4 mb-8">
@@ -31,7 +31,7 @@ export default function InstallationPage() {
             <span className="ml-4 text-text-muted text-sm">npm</span>
           </div>
           <div className="terminal-body">
-            <code className="text-neon-lime">npm install sqaull</code>
+            <code className="text-neon-lime">npm install genaql</code>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function InstallationPage() {
             <span className="ml-4 text-text-muted text-sm">pnpm</span>
           </div>
           <div className="terminal-body">
-            <code className="text-neon-lime">pnpm add sqaull</code>
+            <code className="text-neon-lime">pnpm add genaql</code>
           </div>
         </div>
 
@@ -55,7 +55,7 @@ export default function InstallationPage() {
             <span className="ml-4 text-text-muted text-sm">yarn</span>
           </div>
           <div className="terminal-body">
-            <code className="text-neon-lime">yarn add sqaull</code>
+            <code className="text-neon-lime">yarn add genaql</code>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export default function InstallationPage() {
             <span className="ml-4 text-text-muted text-sm">bun</span>
           </div>
           <div className="terminal-body">
-            <code className="text-neon-lime">bun add sqaull</code>
+            <code className="text-neon-lime">bun add genaql</code>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ export default function InstallationPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Verify Installation</h2>
 
       <p className="text-text-secondary mb-4">
-        Create a test file to verify sqaull is working:
+        Create a test file to verify genaql is working:
       </p>
 
       <div className="terminal mb-8">
@@ -109,8 +109,8 @@ export default function InstallationPage() {
         <div className="terminal-body">
           <pre className="text-sm">
             <code>
-              <span className="code-keyword">import</span> {"{"} gull {"}"} <span className="code-keyword">from</span> <span className="code-string">&apos;sqaull&apos;</span>;{"\n\n"}
-              <span className="code-keyword">const</span> query = gull<span className="code-string">`from:users sel:* lim:1`</span>;{"\n\n"}
+              <span className="code-keyword">import</span> {"{"} cook {"}"} <span className="code-keyword">from</span> <span className="code-string">&apos;genaql&apos;</span>;{"\n\n"}
+              <span className="code-keyword">const</span> query = cook<span className="code-string">`from:users sel:* lim:1`</span>;{"\n\n"}
               console.<span className="code-function">log</span>(query.<span className="code-function">toSQL</span>());{"\n"}
               <span className="code-comment">// Should output: SELECT * FROM users LIMIT 1</span>
             </code>
@@ -121,7 +121,7 @@ export default function InstallationPage() {
       <div className="feature-card bg-neon-lime/5 border-neon-lime/20">
         <h3 className="text-lg font-semibold mb-2 text-neon-lime">You&apos;re Ready!</h3>
         <p className="text-text-secondary text-sm">
-          sqaull is installed and ready to use. Head to the{" "}
+          genaql is installed and ready to use. Head to the{" "}
           <a href="/docs/quick-start" className="text-neon-lime hover:underline">Quick Start</a>{" "}
           guide to write your first real query.
         </p>

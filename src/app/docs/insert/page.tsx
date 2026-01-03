@@ -11,8 +11,8 @@ export default function InsertPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">INSERT Statements</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Insert data into your database with sqaull&apos;s clean syntax.
-        {isGenAlpha && " No cap, we're dropping fire values 🔥"}
+        Insert data into your database with genaql&apos;s clean syntax.
+        {isGenAlpha && " We're dropping fire values."}
       </p>
 
       <div className="line-glow my-8" />
@@ -21,10 +21,10 @@ export default function InsertPage() {
 
       <CodeBlock
         og={`// Insert a single row
-gull\`ins:users cols:name,email vals:John,john@example.com\`
+cook\`ins:users cols:name,email vals:John,john@example.com\`
 // → INSERT INTO users (name, email) VALUES ($1, $2)`}
         genalpha={`// Insert a single row
-gull\`nocap:users drip:name,email fire:John,john@example.com\`
+cook\`nocap:users drip:name,email fire:John,john@example.com\`
 // → INSERT INTO users (name, email) VALUES ($1, $2)`}
         title="basic.ts"
       />
@@ -37,26 +37,26 @@ gull\`nocap:users drip:name,email fire:John,john@example.com\`
 
       <CodeBlock
         og={`// Return the inserted ID
-gull\`ins:users cols:name,email vals:John,john@example.com ret:id\`
+cook\`ins:users cols:name,email vals:John,john@example.com ret:id\`
 // → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id
 
 // Return all columns
-gull\`ins:users cols:name,email vals:John,john@example.com ret:*\`
+cook\`ins:users cols:name,email vals:John,john@example.com ret:*\`
 // → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *
 
 // Return specific columns
-gull\`ins:users cols:name,email vals:John,john@example.com ret:id,created_at\`
+cook\`ins:users cols:name,email vals:John,john@example.com ret:id,created_at\`
 // → INSERT INTO users ... RETURNING id, created_at`}
         genalpha={`// Return the inserted ID
-gull\`nocap:users drip:name,email fire:John,john@example.com flex:id\`
+cook\`nocap:users drip:name,email fire:John,john@example.com flex:id\`
 // → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id
 
 // Return all columns
-gull\`nocap:users drip:name,email fire:John,john@example.com flex:*\`
+cook\`nocap:users drip:name,email fire:John,john@example.com flex:*\`
 // → INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *
 
 // Return specific columns
-gull\`nocap:users drip:name,email fire:John,john@example.com flex:id,created_at\`
+cook\`nocap:users drip:name,email fire:John,john@example.com flex:id,created_at\`
 // → INSERT INTO users ... RETURNING id, created_at`}
         title="returning.ts"
       />
@@ -68,13 +68,13 @@ gull\`nocap:users drip:name,email fire:John,john@example.com flex:id,created_at\
 const name = "John";
 const email = "john@example.com";
 
-gull\`ins:users cols:name,email vals:\${name},\${email}\`
+cook\`ins:users cols:name,email vals:\${name},\${email}\`
 // Values are automatically parameterized for safety`}
         genalpha={`// Using template interpolation
 const name = "John";
 const email = "john@example.com";
 
-gull\`nocap:users drip:name,email fire:\${name},\${email}\`
+cook\`nocap:users drip:name,email fire:\${name},\${email}\`
 // Values are automatically parameterized for safety`}
         title="variables.ts"
       />
@@ -115,21 +115,21 @@ db.insert('users')
 
       <CodeBlock
         og={`// Insert or update on conflict (PostgreSQL)
-gull\`ins:users cols:email,name vals:john@test.com,John conflict:email do:upd set:name=John\`
+cook\`ins:users cols:email,name vals:john@test.com,John conflict:email do:upd set:name=John\`
 // → INSERT INTO users (email, name) VALUES ($1, $2)
 //   ON CONFLICT (email) DO UPDATE SET name = $3
 
 // Insert or ignore
-gull\`ins:users cols:email,name vals:john@test.com,John conflict:email do:nothing\`
+cook\`ins:users cols:email,name vals:john@test.com,John conflict:email do:nothing\`
 // → INSERT INTO users (email, name) VALUES ($1, $2)
 //   ON CONFLICT (email) DO NOTHING`}
         genalpha={`// Insert or update on conflict (PostgreSQL)
-gull\`nocap:users drip:email,name fire:john@test.com,John conflict:email do:glow rizz:name=John\`
+cook\`nocap:users drip:email,name fire:john@test.com,John conflict:email do:glow rizz:name=John\`
 // → INSERT INTO users (email, name) VALUES ($1, $2)
 //   ON CONFLICT (email) DO UPDATE SET name = $3
 
 // Insert or ignore
-gull\`nocap:users drip:email,name fire:john@test.com,John conflict:email do:nothing\`
+cook\`nocap:users drip:email,name fire:john@test.com,John conflict:email do:nothing\`
 // → INSERT INTO users (email, name) VALUES ($1, $2)
 //   ON CONFLICT (email) DO NOTHING`}
         title="upsert.ts"
@@ -138,7 +138,7 @@ gull\`nocap:users drip:email,name fire:john@test.com,John conflict:email do:noth
       <div className="feature-card bg-neon-pink/5 border-neon-pink/20 mt-8">
         <h3 className="text-lg font-semibold mb-2 text-neon-pink">Security Note</h3>
         <p className="text-text-secondary text-sm">
-          All values in sqaull are automatically parameterized, protecting against SQL injection.
+          All values in genaql are automatically parameterized, protecting against SQL injection.
           Never concatenate user input directly into queries.
         </p>
       </div>

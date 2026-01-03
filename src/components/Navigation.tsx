@@ -12,7 +12,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold gradient-text">sqaull</span>
+            <span className="text-2xl font-bold gradient-text">genaql</span>
             <span className="badge badge-pink text-xs">v0.1.0</span>
           </Link>
 
@@ -28,7 +28,7 @@ export function Navigation() {
               Type Safety
             </Link>
             <a
-              href="https://github.com/sqaull/sqaull"
+              href="https://github.com/genaql/genaql"
               target="_blank"
               rel="noopener noreferrer"
               className="nav-link flex items-center gap-1"

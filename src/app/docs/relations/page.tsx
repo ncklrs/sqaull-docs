@@ -20,7 +20,7 @@ export default function RelationsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Defining Relations</h2>
 
       <CodeBlock
-        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'sqaull';
+        og={`import { defineSchema, hasOne, hasMany, belongsTo, manyToMany } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -63,7 +63,7 @@ const schema = defineSchema({
     }
   }
 });`}
-        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'sqaull';
+        genalpha={`import { defineSchema, got, stacked, simps, linked } from 'genaql';
 
 const schema = defineSchema({
   users: {
@@ -115,7 +115,7 @@ const schema = defineSchema({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-elevated">
-              <th className="text-left py-3 px-4 text-text-muted font-medium">OG</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">Classic</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Gen Alpha</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Description</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">Example</th>
@@ -155,24 +155,24 @@ const schema = defineSchema({
       <CodeBlock
         og={`// Load user with their profile
 const user = await db.query(
-  gull\`from:users sel:* whr:id=1 with:profile\`
+  cook\`from:users sel:* whr:id=1 with:profile\`
 );
 // { id: 1, name: "John", profile: { bio: "...", avatar_url: "..." } }
 
 // Load user with all their posts
 const userWithPosts = await db.query(
-  gull\`from:users sel:* whr:id=1 with:posts\`
+  cook\`from:users sel:* whr:id=1 with:posts\`
 );
 // { id: 1, name: "John", posts: [{ title: "...", content: "..." }, ...] }`}
         genalpha={`// Load user with their profile
 const user = await db.query(
-  gull\`main:users slay:* sus:id=1 fam:profile\`
+  cook\`main:users slay:* sus:id=1 fam:profile\`
 );
 // { id: 1, name: "John", profile: { bio: "...", avatar_url: "..." } }
 
 // Load user with all their posts
 const userWithPosts = await db.query(
-  gull\`main:users slay:* sus:id=1 fam:posts\`
+  cook\`main:users slay:* sus:id=1 fam:posts\`
 );
 // { id: 1, name: "John", posts: [{ title: "...", content: "..." }, ...] }`}
         title="query-relations.ts"
@@ -183,24 +183,24 @@ const userWithPosts = await db.query(
       <CodeBlock
         og={`// Load posts with author and tags
 const posts = await db.query(
-  gull\`from:posts sel:* with:author,tags\`
+  cook\`from:posts sel:* with:author,tags\`
 );
 // [{ title: "...", author: { name: "John" }, tags: [{ name: "tech" }] }]
 
 // Nested eager loading
 const users = await db.query(
-  gull\`from:users sel:* with:posts.tags\`
+  cook\`from:users sel:* with:posts.tags\`
 );
 // [{ name: "John", posts: [{ title: "...", tags: [...] }] }]`}
         genalpha={`// Load posts with author and tags
 const posts = await db.query(
-  gull\`main:posts slay:* fam:author,tags\`
+  cook\`main:posts slay:* fam:author,tags\`
 );
 // [{ title: "...", author: { name: "John" }, tags: [{ name: "tech" }] }]
 
 // Nested eager loading
 const users = await db.query(
-  gull\`main:users slay:* fam:posts.tags\`
+  cook\`main:users slay:* fam:posts.tags\`
 );
 // [{ name: "John", posts: [{ title: "...", tags: [...] }] }]`}
         title="nested.ts"

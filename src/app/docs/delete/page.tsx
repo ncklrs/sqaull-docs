@@ -21,18 +21,18 @@ export default function DeletePage() {
 
       <CodeBlock
         og={`// Delete by ID
-gull\`del:users whr:id=1\`
+cook\`del:users whr:id=1\`
 // → DELETE FROM users WHERE id = $1
 
 // Delete by condition
-gull\`del:sessions whr:expired=true\`
+cook\`del:sessions whr:expired=true\`
 // → DELETE FROM sessions WHERE expired = $1`}
         genalpha={`// Delete by ID
-gull\`yeet:users sus:id=1\`
+cook\`yeet:users sus:id=1\`
 // → DELETE FROM users WHERE id = $1
 
 // Delete by condition
-gull\`yeet:sessions sus:expired=true\`
+cook\`yeet:sessions sus:expired=true\`
 // → DELETE FROM sessions WHERE expired = $1`}
         title="basic.ts"
       />
@@ -41,18 +41,18 @@ gull\`yeet:sessions sus:expired=true\`
 
       <CodeBlock
         og={`// Return deleted row
-gull\`del:users whr:id=1 ret:*\`
+cook\`del:users whr:id=1 ret:*\`
 // → DELETE FROM users WHERE id = $1 RETURNING *
 
 // Return specific columns
-gull\`del:users whr:id=1 ret:id,email\`
+cook\`del:users whr:id=1 ret:id,email\`
 // → DELETE FROM users WHERE id = $1 RETURNING id, email`}
         genalpha={`// Return deleted row
-gull\`yeet:users sus:id=1 flex:*\`
+cook\`yeet:users sus:id=1 flex:*\`
 // → DELETE FROM users WHERE id = $1 RETURNING *
 
 // Return specific columns
-gull\`yeet:users sus:id=1 flex:id,email\`
+cook\`yeet:users sus:id=1 flex:id,email\`
 // → DELETE FROM users WHERE id = $1 RETURNING id, email`}
         title="returning.ts"
       />
@@ -61,26 +61,26 @@ gull\`yeet:users sus:id=1 flex:id,email\`
 
       <CodeBlock
         og={`// Multiple conditions
-gull\`del:posts whr:status=draft whr:created_at<2024-01-01\`
+cook\`del:posts whr:status=draft whr:created_at<2024-01-01\`
 // → DELETE FROM posts WHERE status = $1 AND created_at < $2
 
 // OR conditions
-gull\`del:notifications whr:read=true|created_at<2024-01-01\`
+cook\`del:notifications whr:read=true|created_at<2024-01-01\`
 // → DELETE FROM notifications WHERE read = $1 OR created_at < $2
 
 // Using IN
-gull\`del:users whr:id.in(1,2,3,4,5)\`
+cook\`del:users whr:id.in(1,2,3,4,5)\`
 // → DELETE FROM users WHERE id IN ($1, $2, $3, $4, $5)`}
         genalpha={`// Multiple conditions
-gull\`yeet:posts sus:status=draft sus:created_at<2024-01-01\`
+cook\`yeet:posts sus:status=draft sus:created_at<2024-01-01\`
 // → DELETE FROM posts WHERE status = $1 AND created_at < $2
 
 // OR conditions
-gull\`yeet:notifications sus:read=true|created_at<2024-01-01\`
+cook\`yeet:notifications sus:read=true|created_at<2024-01-01\`
 // → DELETE FROM notifications WHERE read = $1 OR created_at < $2
 
 // Using IN
-gull\`yeet:users sus:id.in(1,2,3,4,5)\`
+cook\`yeet:users sus:id.in(1,2,3,4,5)\`
 // → DELETE FROM users WHERE id IN ($1, $2, $3, $4, $5)`}
         title="conditional.ts"
       />
@@ -106,11 +106,11 @@ const schema = defineSchema({
 });
 
 // This becomes an UPDATE instead of DELETE
-gull\`del:users whr:id=1\`
+cook\`del:users whr:id=1\`
 // → UPDATE users SET deleted_at = NOW() WHERE id = $1
 
 // Force hard delete when needed
-gull\`del:users whr:id=1 hard:true\`
+cook\`del:users whr:id=1 hard:true\`
 // → DELETE FROM users WHERE id = $1`}
         genalpha={`// Configure soft deletes in schema
 const schema = defineSchema({
@@ -126,11 +126,11 @@ const schema = defineSchema({
 });
 
 // This becomes an UPDATE instead of DELETE
-gull\`yeet:users sus:id=1\`
+cook\`yeet:users sus:id=1\`
 // → UPDATE users SET deleted_at = NOW() WHERE id = $1
 
 // Force hard delete when needed
-gull\`yeet:users sus:id=1 hard:true\`
+cook\`yeet:users sus:id=1 hard:true\`
 // → DELETE FROM users WHERE id = $1`}
         title="soft-delete.ts"
       />
@@ -140,13 +140,13 @@ gull\`yeet:users sus:id=1 hard:true\`
       <CodeBlock
         og={`// With relations defined, cascade deletes child records
 await db.delete(
-  gull\`del:users whr:id=1\`,
+  cook\`del:users whr:id=1\`,
   { cascade: ['posts', 'comments'] }
 );
 // Deletes user and all their posts and comments`}
         genalpha={`// With relations defined, cascade deletes child records
 await db.delete(
-  gull\`yeet:users sus:id=1\`,
+  cook\`yeet:users sus:id=1\`,
   { cascade: ['posts', 'comments'] }
 );
 // Deletes user and all their posts and comments`}
@@ -157,7 +157,7 @@ await db.delete(
         <div className="feature-card bg-red-500/5 border-red-500/20">
           <h3 className="text-lg font-semibold mb-2 text-red-400">Danger Zone</h3>
           <p className="text-text-secondary text-sm">
-            DELETE without WHERE will remove all rows. sqaull requires explicit confirmation
+            DELETE without WHERE will remove all rows. genaql requires explicit confirmation
             or can be configured to always require WHERE clauses.
           </p>
         </div>

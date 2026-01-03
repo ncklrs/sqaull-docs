@@ -11,7 +11,7 @@ export default function JoinsPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Joins</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Combine data from multiple tables with sqaull&apos;s intuitive join syntax.
+        Combine data from multiple tables with genaql&apos;s intuitive join syntax.
         {isGenAlpha && " Link up those tables fr fr 🔗"}
       </p>
 
@@ -24,11 +24,11 @@ export default function JoinsPage() {
       </p>
 
       <CodeBlock
-        og={`gull\`from:users join:orders on:users.id=orders.user_id sel:users.name,orders.total\`
+        og={`cook\`from:users join:orders on:users.id=orders.user_id sel:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   INNER JOIN orders ON users.id = orders.user_id`}
-        genalpha={`gull\`main:users link:orders match:users.id=orders.user_id slay:users.name,orders.total\`
+        genalpha={`cook\`main:users link:orders match:users.id=orders.user_id slay:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   INNER JOIN orders ON users.id = orders.user_id`}
@@ -42,11 +42,11 @@ export default function JoinsPage() {
       </p>
 
       <CodeBlock
-        og={`gull\`from:users join:orders/left on:users.id=orders.user_id sel:users.name,orders.total\`
+        og={`cook\`from:users join:orders/left on:users.id=orders.user_id sel:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   LEFT JOIN orders ON users.id = orders.user_id`}
-        genalpha={`gull\`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total\`
+        genalpha={`cook\`main:users link:orders/left match:users.id=orders.user_id slay:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   LEFT JOIN orders ON users.id = orders.user_id`}
@@ -56,11 +56,11 @@ export default function JoinsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">RIGHT JOIN</h2>
 
       <CodeBlock
-        og={`gull\`from:users join:orders/right on:users.id=orders.user_id sel:users.name,orders.total\`
+        og={`cook\`from:users join:orders/right on:users.id=orders.user_id sel:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   RIGHT JOIN orders ON users.id = orders.user_id`}
-        genalpha={`gull\`main:users link:orders/right match:users.id=orders.user_id slay:users.name,orders.total\`
+        genalpha={`cook\`main:users link:orders/right match:users.id=orders.user_id slay:users.name,orders.total\`
 // → SELECT users.name, orders.total
 //   FROM users
 //   RIGHT JOIN orders ON users.id = orders.user_id`}
@@ -70,11 +70,11 @@ export default function JoinsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">FULL OUTER JOIN</h2>
 
       <CodeBlock
-        og={`gull\`from:users join:orders/full on:users.id=orders.user_id sel:*\`
+        og={`cook\`from:users join:orders/full on:users.id=orders.user_id sel:*\`
 // → SELECT *
 //   FROM users
 //   FULL OUTER JOIN orders ON users.id = orders.user_id`}
-        genalpha={`gull\`main:users link:orders/full match:users.id=orders.user_id slay:*\`
+        genalpha={`cook\`main:users link:orders/full match:users.id=orders.user_id slay:*\`
 // → SELECT *
 //   FROM users
 //   FULL OUTER JOIN orders ON users.id = orders.user_id`}
@@ -84,7 +84,7 @@ export default function JoinsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Multiple Joins</h2>
 
       <CodeBlock
-        og={`gull\`from:orders
+        og={`cook\`from:orders
     join:users on:orders.user_id=users.id
     join:products on:orders.product_id=products.id
     sel:users.name,products.title,orders.quantity\`
@@ -92,7 +92,7 @@ export default function JoinsPage() {
 //   FROM orders
 //   INNER JOIN users ON orders.user_id = users.id
 //   INNER JOIN products ON orders.product_id = products.id`}
-        genalpha={`gull\`main:orders
+        genalpha={`cook\`main:orders
     link:users match:orders.user_id=users.id
     link:products match:orders.product_id=products.id
     slay:users.name,products.title,orders.quantity\`
@@ -106,11 +106,11 @@ export default function JoinsPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Table Aliases</h2>
 
       <CodeBlock
-        og={`gull\`from:users@u join:orders@o on:u.id=o.user_id sel:u.name,o.total\`
+        og={`cook\`from:users@u join:orders@o on:u.id=o.user_id sel:u.name,o.total\`
 // → SELECT u.name, o.total
 //   FROM users u
 //   INNER JOIN orders o ON u.id = o.user_id`}
-        genalpha={`gull\`main:users@u link:orders@o match:u.id=o.user_id slay:u.name,o.total\`
+        genalpha={`cook\`main:users@u link:orders@o match:u.id=o.user_id slay:u.name,o.total\`
 // → SELECT u.name, o.total
 //   FROM users u
 //   INNER JOIN orders o ON u.id = o.user_id`}
@@ -121,12 +121,12 @@ export default function JoinsPage() {
 
       <CodeBlock
         og={`// Find employees and their managers
-gull\`from:employees@e join:employees@m/left on:e.manager_id=m.id sel:e.name@employee,m.name@manager\`
+cook\`from:employees@e join:employees@m/left on:e.manager_id=m.id sel:e.name@employee,m.name@manager\`
 // → SELECT e.name AS employee, m.name AS manager
 //   FROM employees e
 //   LEFT JOIN employees m ON e.manager_id = m.id`}
         genalpha={`// Find employees and their managers
-gull\`main:employees@e link:employees@m/left match:e.manager_id=m.id slay:e.name@employee,m.name@manager\`
+cook\`main:employees@e link:employees@m/left match:e.manager_id=m.id slay:e.name@employee,m.name@manager\`
 // → SELECT e.name AS employee, m.name AS manager
 //   FROM employees e
 //   LEFT JOIN employees m ON e.manager_id = m.id`}
@@ -137,13 +137,13 @@ gull\`main:employees@e link:employees@m/left match:e.manager_id=m.id slay:e.name
 
       <CodeBlock
         og={`// Join with additional WHERE
-gull\`from:users join:orders on:users.id=orders.user_id sel:* whr:orders.status=completed whr:users.active=true\`
+cook\`from:users join:orders on:users.id=orders.user_id sel:* whr:orders.status=completed whr:users.active=true\`
 // → SELECT *
 //   FROM users
 //   INNER JOIN orders ON users.id = orders.user_id
 //   WHERE orders.status = $1 AND users.active = $2`}
         genalpha={`// Join with additional WHERE
-gull\`main:users link:orders match:users.id=orders.user_id slay:* sus:orders.status=completed sus:users.active=true\`
+cook\`main:users link:orders match:users.id=orders.user_id slay:* sus:orders.status=completed sus:users.active=true\`
 // → SELECT *
 //   FROM users
 //   INNER JOIN orders ON users.id = orders.user_id

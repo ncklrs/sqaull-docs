@@ -8,7 +8,7 @@ export default function TypeSafetyPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Type Safety</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Get compile-time validation, autocomplete, and runtime checks with sqaull&apos;s TypeScript integration.
+        Get compile-time validation, autocomplete, and runtime checks with genaql&apos;s TypeScript integration.
       </p>
 
       <div className="line-glow my-8" />
@@ -20,7 +20,7 @@ export default function TypeSafetyPage() {
       </p>
 
       <CodeBlock
-        og={`import { defineSchema } from 'sqaull';
+        og={`import { defineSchema } from 'genaql';
 
 export const schema = defineSchema({
   users: {
@@ -39,7 +39,7 @@ export const schema = defineSchema({
     published: { type: 'boolean', default: false }
   }
 });`}
-        genalpha={`import { defineSchema } from 'sqaull';
+        genalpha={`import { defineSchema } from 'genaql';
 
 export const schema = defineSchema({
   users: {
@@ -67,7 +67,7 @@ export const schema = defineSchema({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-elevated">
-              <th className="text-left py-3 px-4 text-text-muted font-medium">sqaull Type</th>
+              <th className="text-left py-3 px-4 text-text-muted font-medium">genaql Type</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">TypeScript</th>
               <th className="text-left py-3 px-4 text-text-muted font-medium">PostgreSQL</th>
             </tr>
@@ -120,27 +120,27 @@ export const schema = defineSchema({
 
       <CodeBlock
         og={`// ✓ Valid - all columns exist
-gull\`from:users sel:id,name,email\`
+cook\`from:users sel:id,name,email\`
 
 // ✗ Error - column doesn't exist
-gull\`from:users sel:id,name,nonexistent\`
+cook\`from:users sel:id,name,nonexistent\`
 //                         ^^^^^^^^^^^
 // Type Error: Column 'nonexistent' does not exist
 
 // ✗ Error - table doesn't exist
-gull\`from:invalid_table sel:*\`
+cook\`from:invalid_table sel:*\`
 //       ^^^^^^^^^^^^^
 // Type Error: Table 'invalid_table' does not exist`}
         genalpha={`// ✓ Valid - all columns exist
-gull\`main:users slay:id,name,email\`
+cook\`main:users slay:id,name,email\`
 
 // ✗ Error - column doesn't exist
-gull\`main:users slay:id,name,nonexistent\`
+cook\`main:users slay:id,name,nonexistent\`
 //                          ^^^^^^^^^^^
 // Type Error: Column 'nonexistent' does not exist
 
 // ✗ Error - table doesn't exist
-gull\`main:invalid_table slay:*\`
+cook\`main:invalid_table slay:*\`
 //        ^^^^^^^^^^^^^
 // Type Error: Table 'invalid_table' does not exist`}
         title="validation.ts"
@@ -154,7 +154,7 @@ gull\`main:invalid_table slay:*\`
 
       <CodeBlock
         og={`const users = await db.query(
-  gull\`from:users sel:id,name,email whr:active=true\`
+  cook\`from:users sel:id,name,email whr:active=true\`
 );
 
 // TypeScript knows the shape:
@@ -165,7 +165,7 @@ users.forEach(user => {
   console.log(user.invalid); // ✗ Error: Property 'invalid' does not exist
 });`}
         genalpha={`const users = await db.query(
-  gull\`main:users slay:id,name,email sus:active=true\`
+  cook\`main:users slay:id,name,email sus:active=true\`
 );
 
 // TypeScript knows the shape:
@@ -185,7 +185,7 @@ users.forEach(user => {
       </p>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 
 const db = createClient({
   dialect: 'postgres',
@@ -196,7 +196,7 @@ const db = createClient({
 
 // In development, invalid queries throw helpful errors
 // In production, validation is skipped for performance`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 
 const db = createClient({
   dialect: 'postgres',
@@ -213,7 +213,7 @@ const db = createClient({
       <div className="feature-card bg-neon-pink/5 border-neon-pink/20 mt-8">
         <h3 className="text-lg font-semibold mb-2 text-neon-pink">Best Practice</h3>
         <p className="text-text-secondary text-sm">
-          Define your schema in a separate file and import it wherever you use sqaull.
+          Define your schema in a separate file and import it wherever you use genaql.
           This ensures consistent type checking across your entire codebase.
         </p>
       </div>

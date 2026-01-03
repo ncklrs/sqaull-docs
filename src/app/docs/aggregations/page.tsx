@@ -21,34 +21,34 @@ export default function AggregationsPage() {
 
       <CodeBlock
         og={`// COUNT - count rows
-gull\`from:users sel:cnt:*\`
+cook\`from:users sel:cnt:*\`
 // → SELECT COUNT(*) FROM users
 
 // SUM - sum values
-gull\`from:orders sel:sum:total\`
+cook\`from:orders sel:sum:total\`
 // → SELECT SUM(total) FROM orders
 
 // AVG - average value
-gull\`from:products sel:avg:price\`
+cook\`from:products sel:avg:price\`
 // → SELECT AVG(price) FROM products
 
 // MIN / MAX
-gull\`from:products sel:min:price,max:price\`
+cook\`from:products sel:min:price,max:price\`
 // → SELECT MIN(price), MAX(price) FROM products`}
         genalpha={`// COUNT - count rows
-gull\`main:users slay:cnt:*\`
+cook\`main:users slay:cnt:*\`
 // → SELECT COUNT(*) FROM users
 
 // SUM - sum values
-gull\`main:orders slay:sum:total\`
+cook\`main:orders slay:sum:total\`
 // → SELECT SUM(total) FROM orders
 
 // AVG - average value
-gull\`main:products slay:avg:price\`
+cook\`main:products slay:avg:price\`
 // → SELECT AVG(price) FROM products
 
 // MIN / MAX
-gull\`main:products slay:min:price,max:price\`
+cook\`main:products slay:min:price,max:price\`
 // → SELECT MIN(price), MAX(price) FROM products`}
         title="basic.ts"
       />
@@ -56,12 +56,12 @@ gull\`main:products slay:min:price,max:price\`
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">With Aliases</h2>
 
       <CodeBlock
-        og={`gull\`from:orders sel:cnt:*@total_orders,sum:total@revenue,avg:total@avg_order\`
+        og={`cook\`from:orders sel:cnt:*@total_orders,sum:total@revenue,avg:total@avg_order\`
 // → SELECT COUNT(*) AS total_orders,
 //          SUM(total) AS revenue,
 //          AVG(total) AS avg_order
 //   FROM orders`}
-        genalpha={`gull\`main:orders slay:cnt:*@total_orders,sum:total@revenue,avg:total@avg_order\`
+        genalpha={`cook\`main:orders slay:cnt:*@total_orders,sum:total@revenue,avg:total@avg_order\`
 // → SELECT COUNT(*) AS total_orders,
 //          SUM(total) AS revenue,
 //          AVG(total) AS avg_order
@@ -73,24 +73,24 @@ gull\`main:products slay:min:price,max:price\`
 
       <CodeBlock
         og={`// Group by single column
-gull\`from:orders sel:user_id,cnt:* grp:user_id\`
+cook\`from:orders sel:user_id,cnt:* grp:user_id\`
 // → SELECT user_id, COUNT(*)
 //   FROM orders
 //   GROUP BY user_id
 
 // Group by multiple columns
-gull\`from:orders sel:user_id,status,cnt:* grp:user_id,status\`
+cook\`from:orders sel:user_id,status,cnt:* grp:user_id,status\`
 // → SELECT user_id, status, COUNT(*)
 //   FROM orders
 //   GROUP BY user_id, status`}
         genalpha={`// Group by single column
-gull\`main:orders slay:user_id,cnt:* squad:user_id\`
+cook\`main:orders slay:user_id,cnt:* squad:user_id\`
 // → SELECT user_id, COUNT(*)
 //   FROM orders
 //   GROUP BY user_id
 
 // Group by multiple columns
-gull\`main:orders slay:user_id,status,cnt:* squad:user_id,status\`
+cook\`main:orders slay:user_id,status,cnt:* squad:user_id,status\`
 // → SELECT user_id, status, COUNT(*)
 //   FROM orders
 //   GROUP BY user_id, status`}
@@ -105,27 +105,27 @@ gull\`main:orders slay:user_id,status,cnt:* squad:user_id,status\`
 
       <CodeBlock
         og={`// Users with more than 5 orders
-gull\`from:orders sel:user_id,cnt:*@order_count grp:user_id hav:cnt:*>5\`
+cook\`from:orders sel:user_id,cnt:*@order_count grp:user_id hav:cnt:*>5\`
 // → SELECT user_id, COUNT(*) AS order_count
 //   FROM orders
 //   GROUP BY user_id
 //   HAVING COUNT(*) > 5
 
 // High-value customers
-gull\`from:orders sel:user_id,sum:total@total_spent grp:user_id hav:sum:total>1000\`
+cook\`from:orders sel:user_id,sum:total@total_spent grp:user_id hav:sum:total>1000\`
 // → SELECT user_id, SUM(total) AS total_spent
 //   FROM orders
 //   GROUP BY user_id
 //   HAVING SUM(total) > 1000`}
         genalpha={`// Users with more than 5 orders
-gull\`main:orders slay:user_id,cnt:*@order_count squad:user_id tea:cnt:*>5\`
+cook\`main:orders slay:user_id,cnt:*@order_count squad:user_id tea:cnt:*>5\`
 // → SELECT user_id, COUNT(*) AS order_count
 //   FROM orders
 //   GROUP BY user_id
 //   HAVING COUNT(*) > 5
 
 // High-value customers (spill the tea on big spenders)
-gull\`main:orders slay:user_id,sum:total@total_spent squad:user_id tea:sum:total>1000\`
+cook\`main:orders slay:user_id,sum:total@total_spent squad:user_id tea:sum:total>1000\`
 // → SELECT user_id, SUM(total) AS total_spent
 //   FROM orders
 //   GROUP BY user_id
@@ -137,20 +137,20 @@ gull\`main:orders slay:user_id,sum:total@total_spent squad:user_id tea:sum:total
 
       <CodeBlock
         og={`// Count unique values
-gull\`from:orders sel:cnt:user_id/distinct@unique_customers\`
+cook\`from:orders sel:cnt:user_id/distinct@unique_customers\`
 // → SELECT COUNT(DISTINCT user_id) AS unique_customers FROM orders
 
 // Per-group distinct count
-gull\`from:orders sel:status,cnt:user_id/distinct grp:status\`
+cook\`from:orders sel:status,cnt:user_id/distinct grp:status\`
 // → SELECT status, COUNT(DISTINCT user_id)
 //   FROM orders
 //   GROUP BY status`}
         genalpha={`// Count unique values
-gull\`main:orders slay:cnt:user_id/distinct@unique_customers\`
+cook\`main:orders slay:cnt:user_id/distinct@unique_customers\`
 // → SELECT COUNT(DISTINCT user_id) AS unique_customers FROM orders
 
 // Per-group distinct count
-gull\`main:orders slay:status,cnt:user_id/distinct squad:status\`
+cook\`main:orders slay:status,cnt:user_id/distinct squad:status\`
 // → SELECT status, COUNT(DISTINCT user_id)
 //   FROM orders
 //   GROUP BY status`}
@@ -161,7 +161,7 @@ gull\`main:orders slay:status,cnt:user_id/distinct squad:status\`
 
       <CodeBlock
         og={`// Sales report by category
-gull\`from:products
+cook\`from:products
     join:order_items on:products.id=order_items.product_id
     sel:products.category,cnt:*@items_sold,sum:order_items.quantity@total_qty,sum:order_items.price@revenue
     grp:products.category
@@ -177,7 +177,7 @@ gull\`from:products
 //   HAVING SUM(order_items.price) > 500
 //   ORDER BY revenue DESC`}
         genalpha={`// Sales report by category
-gull\`main:products
+cook\`main:products
     link:order_items match:products.id=order_items.product_id
     slay:products.category,cnt:*@items_sold,sum:order_items.quantity@total_qty,sum:order_items.price@revenue
     squad:products.category

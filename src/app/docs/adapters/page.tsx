@@ -8,7 +8,7 @@ export default function AdaptersPage() {
       <h1 className="text-4xl font-bold mb-4 text-text-primary">Database Adapters</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        Connect sqaull to any supported database with the appropriate adapter.
+        Connect genaql to any supported database with the appropriate adapter.
       </p>
 
       <div className="line-glow my-8" />
@@ -16,7 +16,7 @@ export default function AdaptersPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">PostgreSQL</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -38,7 +38,7 @@ const db = createClient({
 
 // Test connection
 await db.raw('SELECT NOW()');`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -66,7 +66,7 @@ await db.raw('SELECT NOW()');`}
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">MySQL</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 import mysql from 'mysql2/promise';
 
 const pool = mysql.createPool({
@@ -83,7 +83,7 @@ const db = createClient({
   dialect: 'mysql',
   pool
 });`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 import mysql from 'mysql2/promise';
 
 const pool = mysql.createPool({
@@ -106,7 +106,7 @@ const db = createClient({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">SQLite</h2>
 
       <CodeBlock
-        og={`import { createClient } from 'sqaull';
+        og={`import { createClient } from 'genaql';
 import Database from 'better-sqlite3';
 
 // File-based database
@@ -127,7 +127,7 @@ const db = createClient({
   dialect: 'sqlite',
   connection: sqlite
 });`}
-        genalpha={`import { createClient } from 'sqaull';
+        genalpha={`import { createClient } from 'genaql';
 import Database from 'better-sqlite3';
 
 // File-based database
@@ -202,7 +202,7 @@ const db = createClient({
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Custom Adapters</h2>
 
       <CodeBlock
-        og={`import { createAdapter, Adapter } from 'sqaull';
+        og={`import { createAdapter, Adapter } from 'genaql';
 
 const customAdapter: Adapter = {
   dialect: 'custom',
@@ -232,7 +232,7 @@ const db = createClient({
   dialect: 'custom',
   adapter: customAdapter
 });`}
-        genalpha={`import { createAdapter, Adapter } from 'sqaull';
+        genalpha={`import { createAdapter, Adapter } from 'genaql';
 
 const customAdapter: Adapter = {
   dialect: 'custom',

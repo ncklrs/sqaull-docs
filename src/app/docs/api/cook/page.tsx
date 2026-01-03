@@ -1,18 +1,14 @@
 "use client";
 
 import { CodeBlock } from "@/components/CodeBlock";
-import { useSyntaxMode } from "@/hooks/useSyntaxMode";
 
 export default function SqwApiPage() {
-  const { isGenAlpha } = useSyntaxMode();
-
   return (
     <article className="prose prose-invert max-w-none">
-      <h1 className="text-4xl font-bold mb-4 text-text-primary">gull Template</h1>
+      <h1 className="text-4xl font-bold mb-4 text-text-primary">cook Template</h1>
 
       <p className="text-xl text-text-secondary mb-8">
-        The <code className="text-neon-lime">gull</code> tagged template literal is the primary way to write sqaull queries.
-        {isGenAlpha && " The main character of the whole library fr 👑"}
+        The <code className="text-neon-lime">cook</code> tagged template literal is the primary way to write genaql queries.
       </p>
 
       <div className="line-glow my-8" />
@@ -20,8 +16,8 @@ export default function SqwApiPage() {
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Import</h2>
 
       <CodeBlock
-        og={`import { gull } from 'sqaull';`}
-        genalpha={`import { gull } from 'sqaull';`}
+        og={`import { cook } from 'genaql';`}
+        genalpha={`import { cook } from 'genaql';`}
         title="import.ts"
       />
 
@@ -29,7 +25,7 @@ export default function SqwApiPage() {
 
       <CodeBlock
         og={`// Create a query
-const query = gull\`from:users sel:id,name,email whr:active=true\`;
+const query = cook\`from:users sel:id,name,email whr:active=true\`;
 
 // Get SQL string
 const sql = query.toSQL();
@@ -39,7 +35,7 @@ const sql = query.toSQL();
 const { sql, params } = query.toParams();
 // → { sql: "SELECT ... WHERE active = $1", params: [true] }`}
         genalpha={`// Create a query
-const query = gull\`main:users slay:id,name,email sus:active=true\`;
+const query = cook\`main:users slay:id,name,email sus:active=true\`;
 
 // Get SQL string
 const sql = query.toSQL();
@@ -58,23 +54,23 @@ const { sql, params } = query.toParams();
 const userId = 42;
 const status = 'active';
 
-const query = gull\`from:users sel:* whr:id=\${userId} whr:status=\${status}\`;
+const query = cook\`from:users sel:* whr:id=\${userId} whr:status=\${status}\`;
 // → { sql: "... WHERE id = $1 AND status = $2", params: [42, 'active'] }
 
 // Arrays for IN clauses
 const ids = [1, 2, 3];
-const query = gull\`from:users sel:* whr:id.in(\${ids})\`;
+const query = cook\`from:users sel:* whr:id.in(\${ids})\`;
 // → { sql: "... WHERE id IN ($1, $2, $3)", params: [1, 2, 3] }`}
         genalpha={`// Variables are automatically parameterized
 const userId = 42;
 const status = 'active';
 
-const query = gull\`main:users slay:* sus:id=\${userId} sus:status=\${status}\`;
+const query = cook\`main:users slay:* sus:id=\${userId} sus:status=\${status}\`;
 // → { sql: "... WHERE id = $1 AND status = $2", params: [42, 'active'] }
 
 // Arrays for IN clauses
 const ids = [1, 2, 3];
-const query = gull\`main:users slay:* sus:id.in(\${ids})\`;
+const query = cook\`main:users slay:* sus:id.in(\${ids})\`;
 // → { sql: "... WHERE id IN ($1, $2, $3)", params: [1, 2, 3] }`}
         title="interpolation.ts"
       />
@@ -124,44 +120,44 @@ const query = gull\`main:users slay:* sus:id.in(\${ids})\`;
 
       <CodeBlock
         og={`// Base query
-const baseQuery = gull\`from:users sel:*\`;
+const baseQuery = cook\`from:users sel:*\`;
 
 // Extend with conditions
-const activeUsers = baseQuery.extend(gull\`whr:active=true\`);
-const adminUsers = baseQuery.extend(gull\`whr:role=admin\`);
+const activeUsers = baseQuery.extend(cook\`whr:active=true\`);
+const adminUsers = baseQuery.extend(cook\`whr:role=admin\`);
 
 // Clone and modify
 const paginatedQuery = baseQuery
   .clone()
-  .extend(gull\`ord:created_at/desc lim:10 off:20\`);`}
+  .extend(cook\`ord:created_at/desc lim:10 off:20\`);`}
         genalpha={`// Base query
-const baseQuery = gull\`main:users slay:*\`;
+const baseQuery = cook\`main:users slay:*\`;
 
 // Extend with conditions
-const activeUsers = baseQuery.extend(gull\`sus:active=true\`);
-const adminUsers = baseQuery.extend(gull\`sus:role=admin\`);
+const activeUsers = baseQuery.extend(cook\`sus:active=true\`);
+const adminUsers = baseQuery.extend(cook\`sus:role=admin\`);
 
 // Clone and modify
 const paginatedQuery = baseQuery
   .clone()
-  .extend(gull\`vibe:created_at/desc bet:10 skip:20\`);`}
+  .extend(cook\`vibe:created_at/desc bet:10 skip:20\`);`}
         title="composition.ts"
       />
 
       <h2 className="text-2xl font-semibold mb-4 text-text-primary">Raw SQL</h2>
 
       <CodeBlock
-        og={`import { gull, raw } from 'sqaull';
+        og={`import { cook, raw } from 'genaql';
 
 // Insert raw SQL (use with caution!)
-const query = gull\`from:users sel:\${raw('COUNT(*)')} whr:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
+const query = cook\`from:users sel:\${raw('COUNT(*)')} whr:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
 // → SELECT COUNT(*) FROM users WHERE created_at > NOW() - INTERVAL '7 days'
 
 // Raw is NOT parameterized - only use for trusted values`}
-        genalpha={`import { gull, raw } from 'sqaull';
+        genalpha={`import { cook, raw } from 'genaql';
 
 // Insert raw SQL (use with caution!)
-const query = gull\`main:users slay:\${raw('COUNT(*)')} sus:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
+const query = cook\`main:users slay:\${raw('COUNT(*)')} sus:created_at>\${raw("NOW() - INTERVAL '7 days'")}\`;
 // → SELECT COUNT(*) FROM users WHERE created_at > NOW() - INTERVAL '7 days'
 
 // Raw is NOT parameterized - only use for trusted values`}
@@ -172,12 +168,12 @@ const query = gull\`main:users slay:\${raw('COUNT(*)')} sus:created_at>\${raw("N
 
       <CodeBlock
         og={`// Execute query directly
-const users = await db.query(gull\`from:users sel:* whr:active=true\`);
+const users = await db.query(cook\`from:users sel:* whr:active=true\`);
 
 // Query returns typed results when schema is provided
 // users: Array<{ id: number, name: string, email: string, ... }>`}
         genalpha={`// Execute query directly
-const users = await db.query(gull\`main:users slay:* sus:active=true\`);
+const users = await db.query(cook\`main:users slay:* sus:active=true\`);
 
 // Query returns typed results when schema is provided
 // users: Array<{ id: number, name: string, email: string, ... }>`}
